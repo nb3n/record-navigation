@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dcb370fa3a635c49c2c0be084fce79fc",
+    "content-hash": "ed440736141a27cbb4ccb0ac1510b1d2",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -3543,6 +3543,71 @@
                 }
             ],
             "time": "2026-01-02T08:56:05+00:00"
+        },
+        {
+            "name": "nben/filament-record-nav",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nb3n/filament-record-nav.git",
+                "reference": "16dd1472a68153e5e6e8cbcfcbfaae745bd6e207"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nb3n/filament-record-nav/zipball/16dd1472a68153e5e6e8cbcfcbfaae745bd6e207",
+                "reference": "16dd1472a68153e5e6e8cbcfcbfaae745bd6e207",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "filament/filament": "^4.0|^5.0"
+            },
+            "suggest": {
+                "filament/spatie-laravel-media-library-plugin": "For enhanced media management in your resources",
+                "filament/spatie-laravel-settings-plugin": "For application settings management",
+                "spatie/laravel-activitylog": "For tracking record changes and navigation history",
+                "spatie/laravel-permission": "For role-based access control in your admin panel"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nben\\FilamentRecordNav\\FilamentRecordNavServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nben\\FilamentRecordNav\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "nb3n",
+                    "email": "hello@nben.com.np",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Next/Previous record navigation for Filament PHP",
+            "homepage": "https://github.com/nb3n/filament-record-nav",
+            "keywords": [
+                "filament",
+                "laravel",
+                "navigation",
+                "records"
+            ],
+            "support": {
+                "docs": "https://github.com/nb3n/filament-record-nav#readme",
+                "issues": "https://github.com/nb3n/filament-record-nav/issues",
+                "source": "https://github.com/nb3n/filament-record-nav"
+            },
+            "time": "2026-03-27T21:50:52+00:00"
         },
         {
             "name": "nesbot/carbon",
