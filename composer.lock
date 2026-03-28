@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed440736141a27cbb4ccb0ac1510b1d2",
+    "content-hash": "2c39fa6406366824668332a1b744938c",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -5182,6 +5182,130 @@
                 "source": "https://github.com/ramsey/uuid/tree/4.9.2"
             },
             "time": "2025-12-14T04:43:48+00:00"
+        },
+        {
+            "name": "saade/facehash",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saade/facehash.git",
+                "reference": "60843c20a16afd27db110c1cd28bf4fbaac16ffb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saade/facehash/zipball/60843c20a16afd27db110c1cd28bf4fbaac16ffb",
+                "reference": "60843c20a16afd27db110c1cd28bf4fbaac16ffb",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^11.0|^12.0|^13.0",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Facehash": "Saade\\Facehash\\Facades\\Facehash"
+                    },
+                    "providers": [
+                        "Saade\\Facehash\\FacehashServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Saade\\Facehash\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Deterministic avatar faces from any string. Lightweight, pure SVG output. Laravel integration.",
+            "keywords": [
+                "avatar",
+                "deterministic",
+                "facehash",
+                "identicon",
+                "laravel",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/saade/facehash/issues",
+                "source": "https://github.com/saade/facehash/tree/v1.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/saade",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-03-17T17:03:07+00:00"
+        },
+        {
+            "name": "saade/filament-facehash",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saade/filament-facehash.git",
+                "reference": "d41c416514ab9a0e54cb1fa2fa1b145893cd5d91"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saade/filament-facehash/zipball/d41c416514ab9a0e54cb1fa2fa1b145893cd5d91",
+                "reference": "d41c416514ab9a0e54cb1fa2fa1b145893cd5d91",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0|^4.0|^5.0",
+                "php": "^8.2",
+                "saade/facehash": "^1.0",
+                "spatie/laravel-package-tools": "^1.15"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Saade\\FilamentFacehash\\FacehashServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Saade\\FilamentFacehash\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saade",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Use Facehash as the default avatar provider in your Filament panels.",
+            "keywords": [
+                "avatar",
+                "deterministic",
+                "facehash",
+                "filament",
+                "filamentphp",
+                "laravel",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/saade/filament-facehash/issues",
+                "source": "https://github.com/saade/filament-facehash/tree/v1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/saade",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-02-17T22:08:12+00:00"
         },
         {
             "name": "scrivo/highlight.php",

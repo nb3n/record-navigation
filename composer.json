@@ -12,7 +12,8 @@
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "laravel/wayfinder": "^0.1.14",
-        "nben/filament-record-nav": "^2.0"
+        "nben/filament-record-nav": "^2.0",
+        "saade/filament-facehash": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24",

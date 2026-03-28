@@ -18,6 +18,8 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Saade\FilamentFacehash\FacehashPlugin;
+use Saade\FilamentFacehash\FacehashProvider;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -54,6 +56,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->defaultAvatarProvider(FacehashProvider::class)
+            ->plugins([
+                FacehashPlugin::make(),
             ]);
     }
 }
