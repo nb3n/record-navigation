@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        $this->configureSecureUrls();
+        $this->configureDatabase();
     }
 
     /**
@@ -46,5 +50,25 @@ class AppServiceProvider extends ServiceProvider
                 ->uncompromised()
             : null,
         );
+    }
+
+    protected function configureDatabase()
+    {
+        Model::automaticallyEagerLoadRelationships();
+    }
+
+    protected function configureSecureUrls()
+    {
+        // Determine if HTTPS should be enforced
+        $enforceHttps = $this->app->environment(['production', 'staging', 'local'])
+            && ! $this->app->runningUnitTests();
+
+        // Force HTTPS for all generated URLs
+        URL::forceHttps($enforceHttps);
+
+        // Ensure proper server variable is set
+        if ($enforceHttps) {
+            $this->app['request']->server->set('HTTPS', 'on');
+        }
     }
 }
