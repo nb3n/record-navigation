@@ -8,24 +8,26 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Enums\ColumnManagerLayout;
 use Filament\Tables\Table;
+use App\Models\User;
 
 class UsersTable
 {
     public static function configure(Table $table): Table
     {
         return $table
+            ->heading('Users')
+            ->description('Individuals who registered through the application.')
             ->columns([
                 TextColumn::make('name')
+                    ->description(fn (User $record): string => $record->email)
+                    ->copyable()
                     ->searchable(),
 
                 ImageColumn::make('facehash_avatar_url')
                     ->label('Avatar')
                     ->circular(),
-  
-                TextColumn::make('email')
-                    ->label('Email')
-                    ->searchable(),
                     
                  TextColumn::make('created_at')
                     ->since()
@@ -41,6 +43,8 @@ class UsersTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->columnManagerLayout(ColumnManagerLayout::Modal)
+            ->columnManagerColumns(2)
             ->filters([
                 //
             ])
