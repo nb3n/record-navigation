@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 
 class UsersTable
@@ -17,18 +18,26 @@ class UsersTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+
+                ImageColumn::make('facehash_avatar_url')
+                    ->label('Avatar')
+                    ->circular(),
+  
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label('Email')
                     ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
+                    
+                 TextColumn::make('created_at')
+                    ->since()
+                    ->dateTimeTooltip('M d, Y H:i A')
+                    ->label('Joined on')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->since()
+                    ->dateTimeTooltip('M d, Y H:i A')
+                    ->label('Last Update')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
