@@ -21,6 +21,10 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Saade\FilamentFacehash\FacehashPlugin;
 use Saade\FilamentFacehash\FacehashProvider;
 use Filament\Enums\ThemeMode;
+use Filament\Support\Icons\Heroicon;
+use Filament\Enums\UserMenuPosition;
+use Filament\Actions\Action;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -74,6 +78,20 @@ class AdminPanelProvider extends PanelProvider
             ->defaultAvatarProvider(FacehashProvider::class)
             ->plugins([
                 FacehashPlugin::make(),
-            ]);
+            ])
+            ->userMenuItems([
+                Action::make('github')
+                    ->url(config('filament-portal.github'))
+                    ->icon(Heroicon::OutlinedCommandLine),
+
+                Action::make('sponsor')
+                    ->url(config('filament-portal.sponsor'))
+                    ->icon(Heroicon::OutlinedArchiveBox),
+
+                Action::make('plugin')
+                    ->url(config('filament-portal.plugin'))
+                    ->icon(Heroicon::OutlinedPuzzlePiece),
+            ])
+            ->userMenu(position: UserMenuPosition::Sidebar);
     }
 }
