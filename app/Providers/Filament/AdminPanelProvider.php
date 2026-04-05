@@ -105,6 +105,12 @@ class AdminPanelProvider extends PanelProvider
                     
                 GlobalSearchModalPlugin::make()
                     ->showGroupSearchCounts(),
-            ]);
+            ])
+            ->topbar(false)
+            ->sidebarCollapsibleOnDesktop()
+            ->collapsedSidebarWidth('9rem')
+            ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
+            ->globalSearchFieldKeyBindingSuffix()
+            ->globalSearchDebounce('750ms');
     }
 }
