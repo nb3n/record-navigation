@@ -25,6 +25,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Enums\UserMenuPosition;
 use Filament\Actions\Action;
 use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -100,7 +101,10 @@ class AdminPanelProvider extends PanelProvider
                         'staging' => Color::Zinc,
                         default => Color::Orange,
                     })
-                    ->showGitBranch(),                
+                    ->showGitBranch(),  
+                    
+                GlobalSearchModalPlugin::make()
+                    ->showGroupSearchCounts(),
             ]);
     }
 }
