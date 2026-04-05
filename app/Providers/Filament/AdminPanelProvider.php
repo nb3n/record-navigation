@@ -32,7 +32,19 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => [
+                    50 => 'oklch(0.97 0.02 120)',
+                    100 => 'oklch(0.94 0.03 120)',
+                    200 => 'oklch(0.88 0.05 120)',
+                    300 => 'oklch(0.80 0.08 120)',
+                    400 => 'oklch(0.72 0.11 120)',
+                    500 => 'oklch(0.65 0.14 120)',
+                    600 => 'oklch(0.58 0.13 120)',
+                    700 => 'oklch(0.50 0.11 120)',
+                    800 => 'oklch(0.44 0.09 120)',
+                    900 => 'oklch(0.40 0.07 120)',
+                    950 => 'oklch(0.27 0.05 120)',
+                ],
             ])
             ->defaultThemeMode(ThemeMode::Light)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
