@@ -21,17 +21,26 @@ class Category extends Model
     protected $casts = [
         'status' => CategoryStatus::class,
     ];
-
+    
+    /**
+     * Posts associated with this category.
+     */
     public function posts()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Post::class, 'post_category');
     }
 
+    /**
+     * Parent category (nullable).
+     */
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
+    /**
+     * Child categories.
+     */
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');

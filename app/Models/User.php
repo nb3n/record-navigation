@@ -31,4 +31,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Posts authored by this user.
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class)
+            ->withPivot(['role', 'is_primary'])
+            ->withTimestamps();
+    }
 }
