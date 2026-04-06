@@ -14,6 +14,7 @@
         "laravel/octane": "^2.17",
         "laravel/tinker": "^3.0",
         "laravel/wayfinder": "^0.1.14",
+        "league/flysystem-aws-s3-v3": "^3.0",
         "nben/filament-record-nav": "^2.0",
         "pxlrbt/filament-environment-indicator": "^3.5",
         "saade/filament-facehash": "^1.0"
@@ -33,7 +34,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/GlobalHelper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
