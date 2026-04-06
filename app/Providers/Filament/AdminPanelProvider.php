@@ -52,6 +52,11 @@ class AdminPanelProvider extends PanelProvider
                 ],
             ])
             ->defaultThemeMode(ThemeMode::Light)
+            ->brandLogoHeight('2rem')
+            ->brandName(config('filament-portal.brand'))
+            ->brandLogo(getCdnUrl('media/company/logo-light.svg'))
+            ->darkModeBrandLogo(getCdnUrl('media/company/logo-dark.svg'))
+            ->favicon(getCdnUrl('media/company/favicon.svg'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
