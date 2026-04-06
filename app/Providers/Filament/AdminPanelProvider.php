@@ -24,7 +24,6 @@ use Filament\Enums\ThemeMode;
 use Filament\Support\Icons\Heroicon;
 use Filament\Enums\UserMenuPosition;
 use Filament\Actions\Action;
-use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 
 class AdminPanelProvider extends PanelProvider
@@ -99,15 +98,7 @@ class AdminPanelProvider extends PanelProvider
                     ->icon(Heroicon::OutlinedPuzzlePiece),
             ])
             ->userMenu(position: UserMenuPosition::Sidebar)
-            ->plugins([
-                EnvironmentIndicatorPlugin::make()
-                    ->color(fn () => match (app()->environment()) {
-                        'production' => Color::Green,
-                        'staging' => Color::Zinc,
-                        default => Color::Orange,
-                    })
-                    ->showGitBranch(),  
-                    
+            ->plugins([ 
                 GlobalSearchModalPlugin::make()
                     ->showGroupSearchCounts(),
             ])

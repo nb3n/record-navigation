@@ -16,7 +16,6 @@
         "laravel/wayfinder": "^0.1.14",
         "league/flysystem-aws-s3-v3": "^3.0",
         "nben/filament-record-nav": "^2.0",
-        "pxlrbt/filament-environment-indicator": "^3.5",
         "saade/filament-facehash": "^1.0"
     },
     "require-dev": {
