@@ -4,46 +4,92 @@ namespace App\Filament\Resources\Categories\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Filament\Tables\Enums\ColumnManagerLayout;
+use Filament\Tables\Enums\FiltersLayout;
+use App\Models\Category;
+use App\Enums\CategoryStatus;
 
 class CategoriesTable
 {
     public static function configure(Table $table): Table
     {
         return $table
+            ->heading('Categories')
+            ->description('Manage all categories in the system.')
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+
                 TextColumn::make('slug')
-                    ->searchable(),
+                    ->searchable()
+                    ->badge()
+                    ->color('gray')
+                    ->sortable(),
+
                 TextColumn::make('status')
                     ->badge()
+                    ->sortable()
                     ->searchable(),
-                TextColumn::make('parent_id')
-                    ->numeric()
-                    ->sortable(),
+
+                TextColumn::make('parent.name')
+                    ->label('Parent Category')
+                    ->sortable()
+                    ->badge()
+                    ->default('None')
+                    ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Created')
+                    ->since()
+                    ->dateTimeTooltip('M d, Y H:i A')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Last Updated')
+                    ->since()
+                    ->dateTimeTooltip('M d, Y H:i A')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('deleted_at')
-                    ->dateTime()
+                    ->label('Deleted')
+                    ->since()
+                    ->dateTimeTooltip('M d, Y H:i A')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                TrashedFilter::make(),
-            ])
+            ->columnManagerLayout(ColumnManagerLayout::Modal)
+            ->columnManagerColumns(2)
+            ->filters(
+                [
+                    SelectFilter::make('status')
+                        ->label('Status')
+                        ->options(CategoryStatus::class)
+                        ->native(false),
+
+                    SelectFilter::make('parent_id')
+                        ->label('Parent Category')
+                        ->relationship('parent', 'name')
+                        ->searchable()
+                        ->preload()
+                        ->native(false),
+
+                    TrashedFilter::make()
+                        ->native(false),
+                ], 
+                layout: FiltersLayout::AboveContentCollapsible
+            )
+            ->filtersFormColumns(3)
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
