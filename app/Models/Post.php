@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\PostStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
@@ -33,15 +34,15 @@ class Post extends Model
     /**
      * Categories associated with this post.
      */
-    public function categories()
+    public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'post_category');
     }
-    
+
     /**
      * Authors of this post.
      */
-    public function authors()
+    public function authors(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'post_user')
             ->withPivot(['role', 'is_primary'])
