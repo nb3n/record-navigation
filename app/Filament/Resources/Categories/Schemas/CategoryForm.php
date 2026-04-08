@@ -7,11 +7,13 @@ use App\Models\Category;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\ModalTableSelect;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 use Filament\Support\Icons\Heroicon;
 use Filament\Schemas\Components\Utilities\Set;
+use App\Filament\Resources\Categories\Tables\SelectParentCategoryTable;
 
 class CategoryForm
 {
@@ -63,22 +65,22 @@ class CategoryForm
                 Section::make('Parent & Status')
                     ->description('Organize categories and control their visibility.')
                     ->schema([
-                        Select::make('parent_id')
+                        ModalTableSelect::make('parent_id')
                             ->label('Parent Category')
-                            ->prefixIcon(Heroicon::Squares2x2)
                             ->relationship(
                                 name: 'parent',
-                                titleAttribute: 'name',
-                                modifyQueryUsing: fn ($query, $livewire) =>
-                                    $livewire->record
-                                        ? $query->where('id', '!=', $livewire->record->id)
-                                        : $query
+                                titleAttribute: 'name'
                             )
+                            ->tableConfiguration(SelectParentCategoryTable::class)
                             ->helperText('Choose a parent category to create a hierarchy, or leave blank for a top-level category.')
-                            ->searchable()
-                            ->preload()
                             ->nullable()
-                            ->native(false),
+                            ->badge()
+                            ->rules([
+                                'different:id',
+                            ])
+                            ->validationMessages([
+                                'different' => 'A category cannot be its own parent.',
+                            ]),
 
                         Select::make('status')
                             ->label('Category Status')
