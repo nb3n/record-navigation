@@ -16,12 +16,11 @@ class SelectParentCategoryTable extends CategoriesTable
 
         return $table->modifyQueryUsing(function (Builder $query) use ($table): Builder {
             $arguments = $table->getArguments();
-
             $recordId = $arguments['record_id'] ?? null;
 
             return $query
                 ->when($recordId, fn ($q) => $q->where('id', '!=', $recordId))
-                ->selectableAsParent();
+                ->selectableAsParent($recordId);
         });
     }
 }

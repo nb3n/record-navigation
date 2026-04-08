@@ -32,10 +32,15 @@ class Category extends Model
     protected static function booted(): void
     {
         static::saving(function (Category $category): void {
-            $parent = $category->parent;
+            if ($category->parent_id) {
+                $count = self::query()
+                    ->where('id', $category->parent_id)
+                    ->whereHas('parent.parent.parent')
+                    ->count();
 
-            if ($parent?->parent?->parent) {
-                throw new \Exception('Maximum category depth of 3 exceeded.');
+                if ($count > 0) {
+                    throw new \Exception('Maximum category depth of 3 exceeded.');
+                }
             }
         });
     }
@@ -65,10 +70,25 @@ class Category extends Model
     }
 
     /**
-     * Scope: only categories that can be selected as parent (max depth = 3).
+     * Scope: only categories that can be selected as parent.
+     * Filters out:
+     * 1. Categories that would exceed depth = 3
+     * 2. Self and descendants to avoid cycles
      */
-    public function scopeSelectableAsParent(Builder $query): Builder
+    public function scopeSelectableAsParent(Builder $query, ?int $childId = null): Builder
     {
-        return $query->whereDoesntHave('parent.parent.parent');
+        $query = $query->whereDoesntHave('parent.parent.parent');
+
+        if ($childId) {
+            $query->where('id', '!=', $childId);
+
+            $query->whereNotIn('id', function ($q) use ($childId) {
+                $q->select('id')
+                  ->from('categories')
+                  ->where('parent_id', $childId);
+            });
+        }
+
+        return $query;
     }
 }
