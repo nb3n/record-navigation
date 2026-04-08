@@ -45,4 +45,12 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
+
+    /**
+     * Scope: only categories that can be selected as parent (max depth = 3).
+     */
+    public function scopeSelectableAsParent($query)
+    {
+        return $query->whereDoesntHave('parent.parent.parent');
+    }
 }
