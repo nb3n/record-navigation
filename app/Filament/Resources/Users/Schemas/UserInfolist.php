@@ -56,6 +56,14 @@ class UserInfolist
                                 ->badge()
                                 ->color('gray')
                                 ->dateTimeTooltip('M d, Y H:i A'),
+
+                            TextEntry::make('deleted_at')
+                                ->label('Deleted')
+                                ->since()
+                                ->badge()
+                                ->color('red')
+                                ->visible(fn (User $record): bool => $record->trashed())
+                                ->dateTimeTooltip('M d, Y H:i A'),
                         ])
                         ->grow(false)
                         ->columns(2)
