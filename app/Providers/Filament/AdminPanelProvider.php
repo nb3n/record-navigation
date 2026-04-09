@@ -84,6 +84,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 FacehashPlugin::make(),
             ])
+            ->databaseNotifications()
             ->userMenuItems([
                 Action::make('github')
                     ->url(config('filament-portal.github'))
