@@ -36,4 +36,15 @@ class EditUser extends EditRecord
                 }),
         ];
     }
+
+    protected function beforeSave(): void
+    {
+        Notification::make()
+            ->title('Now, now, these records aren\'t yours to change!')
+            ->warning()
+            ->send();
+
+        $this->fillForm();
+        $this->halt();
+    }
 }
