@@ -103,6 +103,7 @@ class AdminPanelProvider extends PanelProvider
                 GlobalSearchModalPlugin::make()
                     ->showGroupSearchCounts(),
             ])
+            ->spa()
             ->topbar(false)
             ->sidebarCollapsibleOnDesktop()
             ->collapsedSidebarWidth('9rem')
