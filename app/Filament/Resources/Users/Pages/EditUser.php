@@ -9,6 +9,7 @@ use Filament\Resources\Pages\EditRecord;
 use Nben\FilamentRecordNav\Actions\NextRecordAction;
 use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Enums\NavigationPage;
+use Filament\Notifications\Notification;
 
 class EditUser extends EditRecord
 {
@@ -24,7 +25,15 @@ class EditUser extends EditRecord
                 ->navigateTo(NavigationPage::Edit),
 
             ViewAction::make(),
-            DeleteAction::make(),
+            DeleteAction::make()
+                ->before(function ($action): void {
+                    Notification::make()
+                        ->title('Now, now, don\'t be cheeky, leave some records for others to play with!')
+                        ->warning()
+                        ->send();
+
+                    $action->cancel();
+                }),
         ];
     }
 }
