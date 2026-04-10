@@ -17,6 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\Categories\Widgets\CategoryStats;
 
 class CategoryResource extends Resource
 {
@@ -59,6 +60,13 @@ class CategoryResource extends Resource
     {
         return [
             //
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            CategoryStats::class,
         ];
     }
 
