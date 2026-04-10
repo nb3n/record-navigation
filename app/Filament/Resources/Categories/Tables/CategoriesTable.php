@@ -8,6 +8,7 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Filters\SelectFilter;
@@ -16,6 +17,8 @@ use Filament\Tables\Enums\ColumnManagerLayout;
 use Filament\Tables\Enums\FiltersLayout;
 use App\Models\Category;
 use App\Enums\CategoryStatus;
+use Filament\Notifications\Notification;
+use Filament\Actions\ActionGroup;
 
 class CategoriesTable
 {
@@ -91,14 +94,56 @@ class CategoriesTable
             )
             ->filtersFormColumns(3)
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ActionGroup::make([
+                    ActionGroup::make([
+                        ViewAction::make(),
+                        EditAction::make(),
+                    ])
+                    ->dropdown(false),
+
+                    DeleteAction::make()
+                        ->before(function ($action): void {
+                            Notification::make()
+                                ->title('Now, now, don\'t be cheeky, leave some records for others to play with!')
+                                ->warning()
+                                ->send();
+
+                            $action->cancel();
+                        }),
+                ])
+                ->tooltip('Actions'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->before(function ($action): void {
+                            Notification::make()
+                                ->title('Now, now, don\'t be cheeky, leave some records for others to play with!')
+                                ->warning()
+                                ->send();
+
+                            $action->cancel();
+                        }),
+
+                    ForceDeleteBulkAction::make()
+                        ->before(function ($action): void {
+                            Notification::make()
+                                ->title('Now, now, don\'t be cheeky, leave some records for others to play with!')
+                                ->warning()
+                                ->send();
+
+                            $action->cancel();
+                        }),
+
+                    RestoreBulkAction::make()
+                        ->before(function ($action): void {
+                            Notification::make()
+                                ->title('Now, now, these records aren\'t yours to restore!')
+                                ->warning()
+                                ->send();
+
+                            $action->cancel();
+                        }),
                 ]),
             ]);
     }
