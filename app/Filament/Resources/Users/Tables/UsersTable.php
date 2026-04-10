@@ -14,6 +14,10 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Enums\ColumnManagerLayout;
 use Filament\Tables\Table;
 use App\Models\User;
+use App\Enums\UserRole;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Enums\FiltersLayout;
 
 class UsersTable
 {
@@ -48,9 +52,22 @@ class UsersTable
             ])
             ->columnManagerLayout(ColumnManagerLayout::Modal)
             ->columnManagerColumns(2)
-            ->filters([
-                //
-            ])
+            ->filters(
+                [
+                    SelectFilter::make('role')
+                        ->label('Type')
+                        ->options(UserRole::class)
+                        ->native(false),
+
+                    TernaryFilter::make('email_verified_at')
+                        ->label('Verification')
+                        ->nullable()
+                        ->trueLabel('Verified')
+                        ->falseLabel('Unverified')
+                        ->native(false),
+                ], 
+                layout: FiltersLayout::AboveContentCollapsible
+            )
             ->recordActions([
                 ActionGroup::make([
                     ActionGroup::make([
