@@ -28,6 +28,9 @@ class UserInfolist
                                 ->badge()
                                 ->color('gray'),
                             
+                            TextEntry::make('role')
+                                ->badge(),
+                            
                             IconEntry::make('email_verified_at')
                                 ->label('Email Verified')
                                 ->boolean()
@@ -36,9 +39,10 @@ class UserInfolist
                             ImageEntry::make('facehash_avatar_url')
                                 ->label('Avatar')
                                 ->circular()
-                                ->imageSize(64),
+                                ->imageSize(64)
+                                ->columnSpanFull(),
                         ])
-                        ->columns(2),
+                        ->columns(3),
 
                     Section::make('Activity')
                         ->description('Account creation and recent update history.')
