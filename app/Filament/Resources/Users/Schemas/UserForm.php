@@ -4,11 +4,13 @@ namespace App\Filament\Resources\Users\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
 use Filament\Schemas\Components\Section;
 use Filament\Support\Icons\Heroicon;
 use Filament\Schemas\Schema;
 use Illuminate\Validation\Rules\Unique;
 use Illuminate\Support\Facades\Hash;
+use App\Enums\UserRole;
 
 class UserForm
 {
@@ -24,6 +26,7 @@ class UserForm
                             ->placeholder('John Doe')
                             ->helperText('Enter the user’s full name.')
                             ->prefixIcon(Heroicon::User)
+                            ->columnSpanFull()
                             ->required(),
 
                         TextInput::make('email')
@@ -36,6 +39,16 @@ class UserForm
                             ->unique(
                                 ignoreRecord: true
                             ),
+
+                        Select::make('role')
+                            ->label('Role')
+                            ->options(UserRole::class)
+                            ->default(UserRole::General)
+                            ->searchable()
+                            ->native(false)
+                            ->prefixIcon(Heroicon::Shield)
+                            ->helperText('Select the user role to define access level.')
+                            ->required(),
                     ])
                     ->columnSpanFull()
                     ->columns(2),
