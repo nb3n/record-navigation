@@ -4,6 +4,8 @@ namespace App\Filament\Widgets;
 
 use Filament\Widgets\Widget;
 use App\Models\Post;
+use Illuminate\Database\Eloquent\Model;
+use App\Filament\Resources\Posts\PostResource;
 
 class FeaturesOverview extends Widget
 {
@@ -40,19 +42,19 @@ class FeaturesOverview extends Widget
                 $post ? [
                     'name' => 'Next & Previous buttons',
                     'description' => 'Navigate seamlessly between records',
-                    'url' => PostResource::getUrl('view', ['record' => $post]),
+                    'url' => PostResource::getUrl('index'),
                     'resource' => 'Posts',
                 ] : null,
                 $post ? [
                     'name' => 'Smart boundaries',
                     'description' => 'Buttons disable at first and last record',
-                    'url' => PostResource::getUrl('view', ['record' => $post]),
+                    'url' => PostResource::getUrl('index'),
                     'resource' => 'Posts',
                 ] : null,
                 $post ? [
                     'name' => 'Single query resolution',
                     'description' => 'Efficient navigation with cached query',
-                    'url' => PostResource::getUrl('view', ['record' => $post]),
+                    'url' => PostResource::getUrl('index'),
                     'resource' => 'Posts',
                 ] : null,
             ])),
@@ -69,19 +71,19 @@ class FeaturesOverview extends Widget
             $post ? [
                 'name' => 'Navigate to edit page',
                 'description' => 'Next/previous opens edit instead of view',
-                'url' => PostResource::getUrl('view-edit-nav', ['record' => $post]),
+                'url' => PostResource::getUrl('index'),
                 'resource' => 'Posts',
             ] : null,
             $post ? [
                 'name' => 'Scoped navigation',
                 'description' => 'Only navigate through published posts',
-                'url' => PostResource::getUrl('view-scoped', ['record' => $post]),
+                'url' => PostResource::getUrl('index'),
                 'resource' => 'Posts',
             ] : null,
             $post ? [
                 'name' => 'Custom query logic',
                 'description' => 'Override navigation queries per use-case',
-                'url' => PostResource::getUrl('view-scoped', ['record' => $post]),
+                'url' => PostResource::getUrl('index'),
                 'resource' => 'Posts',
             ] : null,
         ])),
@@ -97,19 +99,19 @@ protected function navigationDX(?Model $post): array
             $post ? [
                 'name' => 'Zero configuration',
                 'description' => 'Drop in actions and it works instantly',
-                'url' => PostResource::getUrl('view', ['record' => $post]),
+                'url' => PostResource::getUrl('index'),
                 'resource' => 'Posts',
             ] : null,
             $post ? [
                 'name' => 'No trait required',
                 'description' => 'Works without modifying your page class',
-                'url' => PostResource::getUrl('view', ['record' => $post]),
+                'url' => PostResource::getUrl('index'),
                 'resource' => 'Posts',
             ] : null,
             $post ? [
                 'name' => 'Optional overrides',
                 'description' => 'Add trait only when customization is needed',
-                'url' => PostResource::getUrl('view-scoped', ['record' => $post]),
+                'url' => PostResource::getUrl('index'),
                 'resource' => 'Posts',
             ] : null,
         ])),
