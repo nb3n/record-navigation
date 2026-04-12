@@ -22,6 +22,7 @@ class FeaturesOverview extends Widget
             [
                 $this->tablesCategory(),
                 $this->tablesCategory(),
+                $this->tablesCategory(),
             ],
         ));
     }

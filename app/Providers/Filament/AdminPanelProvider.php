@@ -34,6 +34,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->login(Login::class)
             ->colors([
                 'primary' => [
@@ -106,6 +107,7 @@ class AdminPanelProvider extends PanelProvider
             ->collapsedSidebarWidth('9rem')
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->globalSearchFieldKeyBindingSuffix()
-            ->globalSearchDebounce('750ms');
+            ->globalSearchDebounce('750ms')
+            ->font('Albert Sans');
     }
 }
