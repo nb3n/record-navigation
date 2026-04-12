@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use Filament\Widgets\Widget;
+use App\Models\Post;
 
 class FeaturesOverview extends Widget
 {
@@ -17,38 +18,101 @@ class FeaturesOverview extends Widget
      */
     public function getCategories(): array
     {
+        $post = Post::query()->first();
+
         return array_filter(array_map(
             fn (?array $category): ?array => $category && count($category['features']) > 0 ? $category : null,
             [
-                $this->tablesCategory(),
-                $this->tablesCategory(),
-                $this->tablesCategory(),
+                $this->navigationBasics($post),
+                $this->navigationCustomisation($post),
+                $this->navigationDX($post),
             ],
         ));
     }
 
-    /**
-     * @return array{name: string, icon: string, color: string, features: list<array{name: string, description: string, url: string, resource: string}>}
-     */
-    protected function tablesCategory(): array
+    protected function navigationBasics(?Model $post): array
     {
         return [
-            'name' => 'Tables & Columns',
-            'icon' => 'heroicon-o-table-cells',
+            'name' => 'Navigation Basics',
+            'icon' => 'heroicon-o-arrow-right-circle',
             'color' => 'blue',
-            'features' => [
-                ['name' => 'Searchable & sortable', 'description' => 'Full-text search with sortable column headers', 'url' => '/', 'resource' => 'Products'],
-                ['name' => 'Image columns', 'description' => 'Thumbnails from Spatie Media Library', 'url' => '/', 'resource' => 'Products'],
-                ['name' => 'Column summarizers', 'description' => 'Scroll to the table footer to see sum totals for price and shipping', 'url' => '/', 'resource' => 'Orders'],
-                ['name' => 'Inline editing', 'description' => 'Click a status cell to change it inline', 'url' => '/', 'resource' => 'Leave Requests'],
-                ['name' => 'Table grouping', 'description' => 'Toggle grouping using the group icon in table header', 'url' => '/', 'resource' => 'Orders'],
-                ['name' => 'Live polling', 'description' => 'Table data auto-refreshes every 30 seconds in the background', 'url' => '/', 'resource' => 'Expenses'],
-                ['name' => 'Toggleable columns', 'description' => 'Click the column toggle icon in the table header', 'url' => '/', 'resource' => 'Employees'],
-                ['name' => 'Color columns', 'description' => 'Hidden by default — enable "Team color" via the column toggle icon to see swatches', 'url' => '/', 'resource' => 'Employees'],
-                ['name' => 'Column layouts', 'description' => 'Custom multi-row layouts with split and stack', 'url' => '/', 'resource' => 'Authors'],
-                ['name' => 'Drag-and-drop reordering', 'description' => 'Click the reorder toggle in the table header, then drag rows', 'url' => '/', 'resource' => 'Brands'],
-                ['name' => 'Copyable columns', 'description' => 'Click any email cell to copy the value to your clipboard', 'url' => '/', 'resource' => 'Employees'],
-            ],
+            'features' => array_values(array_filter([
+                $post ? [
+                    'name' => 'Next & Previous buttons',
+                    'description' => 'Navigate seamlessly between records',
+                    'url' => PostResource::getUrl('view', ['record' => $post]),
+                    'resource' => 'Posts',
+                ] : null,
+                $post ? [
+                    'name' => 'Smart boundaries',
+                    'description' => 'Buttons disable at first and last record',
+                    'url' => PostResource::getUrl('view', ['record' => $post]),
+                    'resource' => 'Posts',
+                ] : null,
+                $post ? [
+                    'name' => 'Single query resolution',
+                    'description' => 'Efficient navigation with cached query',
+                    'url' => PostResource::getUrl('view', ['record' => $post]),
+                    'resource' => 'Posts',
+                ] : null,
+            ])),
         ];
     }
+
+    protected function navigationCustomisation(?Model $post): array
+{
+    return [
+        'name' => 'Customisation',
+        'icon' => 'heroicon-o-adjustments-horizontal',
+        'color' => 'violet',
+        'features' => array_values(array_filter([
+            $post ? [
+                'name' => 'Navigate to edit page',
+                'description' => 'Next/previous opens edit instead of view',
+                'url' => PostResource::getUrl('view-edit-nav', ['record' => $post]),
+                'resource' => 'Posts',
+            ] : null,
+            $post ? [
+                'name' => 'Scoped navigation',
+                'description' => 'Only navigate through published posts',
+                'url' => PostResource::getUrl('view-scoped', ['record' => $post]),
+                'resource' => 'Posts',
+            ] : null,
+            $post ? [
+                'name' => 'Custom query logic',
+                'description' => 'Override navigation queries per use-case',
+                'url' => PostResource::getUrl('view-scoped', ['record' => $post]),
+                'resource' => 'Posts',
+            ] : null,
+        ])),
+    ];
+}
+protected function navigationDX(?Model $post): array
+{
+    return [
+        'name' => 'Developer Experience',
+        'icon' => 'heroicon-o-code-bracket',
+        'color' => 'emerald',
+        'features' => array_values(array_filter([
+            $post ? [
+                'name' => 'Zero configuration',
+                'description' => 'Drop in actions and it works instantly',
+                'url' => PostResource::getUrl('view', ['record' => $post]),
+                'resource' => 'Posts',
+            ] : null,
+            $post ? [
+                'name' => 'No trait required',
+                'description' => 'Works without modifying your page class',
+                'url' => PostResource::getUrl('view', ['record' => $post]),
+                'resource' => 'Posts',
+            ] : null,
+            $post ? [
+                'name' => 'Optional overrides',
+                'description' => 'Add trait only when customization is needed',
+                'url' => PostResource::getUrl('view-scoped', ['record' => $post]),
+                'resource' => 'Posts',
+            ] : null,
+        ])),
+    ];
+}
 }
