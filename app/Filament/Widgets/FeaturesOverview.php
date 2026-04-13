@@ -4,6 +4,8 @@ namespace App\Filament\Widgets;
 
 use Filament\Widgets\Widget;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use App\Filament\Resources\Posts\PostResource;
 
@@ -21,7 +23,9 @@ class FeaturesOverview extends Widget
     public function getCategories(): array
     {
         $post = Post::query()->first();
-
+        $user = User::query()->first();
+        $category = Category::query()->first();
+        
         return array_filter(array_map(
             fn (?array $category): ?array => $category && count($category['features']) > 0 ? $category : null,
             [
