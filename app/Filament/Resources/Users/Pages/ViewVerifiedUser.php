@@ -22,11 +22,11 @@ class ViewVerifiedUser extends ViewRecord
         return [
             PreviousRecordAction::make()
                 ->tooltip('Previous Verified User')
-                ->navigateTo(NavigationPage::View),
+                ->navigateTo(NavigationPage::custom('verified-view')),
 
             NextRecordAction::make()
                 ->tooltip('Next Verified User')
-                ->navigateTo(NavigationPage::View),
+                ->navigateTo(NavigationPage::custom('verified-view')),
 
             EditAction::make(),
         ];
@@ -48,7 +48,7 @@ class ViewVerifiedUser extends ViewRecord
             ->newQuery()
             ->whereNotNull('email_verified_at')
             ->where('id', '>', $this->getRecord()->id)
-            ->orderBy('id', 'desc')
+            ->orderBy('id', 'asc')
             ->first();
     }
 }
