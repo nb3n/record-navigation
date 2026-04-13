@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use App\Filament\Resources\Posts\PostResource;
+use App\Filament\Resources\Categories\CategoryResource;
+use App\Filament\Resources\Users\UserResource;
 
 class FeaturesOverview extends Widget
 {
@@ -25,41 +27,48 @@ class FeaturesOverview extends Widget
         $post = Post::query()->first();
         $user = User::query()->first();
         $category = Category::query()->first();
-        
+
         return array_filter(array_map(
             fn (?array $category): ?array => $category && count($category['features']) > 0 ? $category : null,
             [
-                $this->navigationBasics($post),
-                $this->navigationCustomisation($post),
+                $this->navigationBasics($user),
+                $this->navigationCustomisation($category),
                 $this->navigationDX($post),
             ],
         ));
     }
 
-    protected function navigationBasics(?Model $post): array
-    {
+    protected function navigationBasics(): array
+    {           
+        $baseQuery = User::query()->orderBy('id');
+        $total = (clone $baseQuery)->count();
+
+        $firstUser = (clone $baseQuery)->first();
+        $middleUser = $total > 0 ? (clone $baseQuery)->offset((int) floor($total / 2))->first() : null;
+        $verifiedUser = (clone $baseQuery)->whereNotNull('email_verified_at')->first();
+        
         return [
             'name' => 'Navigation Basics',
             'icon' => 'heroicon-o-arrow-right-circle',
             'color' => 'blue',
             'features' => array_values(array_filter([
-                $post ? [
+                $middleUser ? [
                     'name' => 'Next & Previous buttons',
                     'description' => 'Navigate seamlessly between records',
-                    'url' => PostResource::getUrl('index'),
-                    'resource' => 'Posts',
+                    'url' => UserResource::getUrl('view', ['record' => $middleUser]),
+                    'resource' => 'Users',
                 ] : null,
-                $post ? [
+                $firstUser ? [
                     'name' => 'Smart boundaries',
                     'description' => 'Buttons disable at first and last record',
-                    'url' => PostResource::getUrl('index'),
-                    'resource' => 'Posts',
+                    'url' => UserResource::getUrl('view', ['record' => $firstUser]),
+                    'resource' => 'Users',
                 ] : null,
-                $post ? [
+                $verifiedUser ? [
                     'name' => 'Single query resolution',
                     'description' => 'Efficient navigation with cached query',
-                    'url' => PostResource::getUrl('index'),
-                    'resource' => 'Posts',
+                    'url' => UserResource::getUrl('verified-view', ['record' => $verifiedUser]),
+                    'resource' => 'Users',
                 ] : null,
             ])),
         ];
