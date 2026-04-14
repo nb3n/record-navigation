@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Filament\Resources\Posts\PostResource;
 use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Resources\Users\UserResource;
+use App\Enums\CategoryStatus;
 
 class FeaturesOverview extends Widget
 {
@@ -78,22 +79,23 @@ class FeaturesOverview extends Widget
     {
         $baseQuery = Category::query()->orderBy('id');
         $firstCategory = (clone $baseQuery)->first();
+        $scopedNavigation = (clone $baseQuery)->where('status', CategoryStatus::Active)->first();
 
         return [
             'name' => 'Customisation',
             'icon' => 'heroicon-o-adjustments-horizontal',
             'color' => 'violet',
             'features' => array_values(array_filter([
-                $category ? [
+                $firstCategory ? [
                     'name' => 'Navigate to edit page',
                     'description' => 'Next/previous opens edit instead of view',
                     'url' => CategoryResource::getUrl('edit', ['record' => $firstCategory]),
                     'resource' => 'Category',
                 ] : null,
-                $category ? [
+                $scopedNavigation ? [
                     'name' => 'Scoped navigation',
-                    'description' => 'Only navigate through published posts',
-                    'url' => CategoryResource::getUrl('index'),
+                    'description' => 'Only navigate through active status',
+                    'url' => CategoryResource::getUrl('active-category', ['record' => $scopedNavigation]),
                     'resource' => 'Category',
                 ] : null,
                 $category ? [
