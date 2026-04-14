@@ -38,7 +38,7 @@ class FeaturesOverview extends Widget
         ));
     }
 
-    protected function navigationBasics(): array
+    protected function navigationBasics(?Model $post): array
     {           
         $baseQuery = User::query()->orderBy('id');
         $total = (clone $baseQuery)->count();
@@ -74,34 +74,38 @@ class FeaturesOverview extends Widget
         ];
     }
 
-    protected function navigationCustomisation(?Model $post): array
-{
-    return [
-        'name' => 'Customisation',
-        'icon' => 'heroicon-o-adjustments-horizontal',
-        'color' => 'violet',
-        'features' => array_values(array_filter([
-            $post ? [
-                'name' => 'Navigate to edit page',
-                'description' => 'Next/previous opens edit instead of view',
-                'url' => PostResource::getUrl('index'),
-                'resource' => 'Posts',
-            ] : null,
-            $post ? [
-                'name' => 'Scoped navigation',
-                'description' => 'Only navigate through published posts',
-                'url' => PostResource::getUrl('index'),
-                'resource' => 'Posts',
-            ] : null,
-            $post ? [
-                'name' => 'Custom query logic',
-                'description' => 'Override navigation queries per use-case',
-                'url' => PostResource::getUrl('index'),
-                'resource' => 'Posts',
-            ] : null,
-        ])),
-    ];
-}
+    protected function navigationCustomisation(?Model $category): array
+    {
+        $baseQuery = Category::query()->orderBy('id');
+        $firstCategory = (clone $baseQuery)->first();
+
+        return [
+            'name' => 'Customisation',
+            'icon' => 'heroicon-o-adjustments-horizontal',
+            'color' => 'violet',
+            'features' => array_values(array_filter([
+                $category ? [
+                    'name' => 'Navigate to edit page',
+                    'description' => 'Next/previous opens edit instead of view',
+                    'url' => CategoryResource::getUrl('edit', ['record' => $firstCategory]),
+                    'resource' => 'Category',
+                ] : null,
+                $category ? [
+                    'name' => 'Scoped navigation',
+                    'description' => 'Only navigate through published posts',
+                    'url' => CategoryResource::getUrl('index'),
+                    'resource' => 'Category',
+                ] : null,
+                $category ? [
+                    'name' => 'Custom query logic',
+                    'description' => 'Override navigation queries per use-case',
+                    'url' => CategoryResource::getUrl('index'),
+                    'resource' => 'Category',
+                ] : null,
+            ])),
+        ];
+    }
+
 protected function navigationDX(?Model $post): array
 {
     return [
