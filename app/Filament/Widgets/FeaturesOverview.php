@@ -78,6 +78,7 @@ class FeaturesOverview extends Widget
         $baseQuery = Category::query()->orderBy('id');
         $firstCategory = (clone $baseQuery)->first();
         $scopedNavigation = (clone $baseQuery)->where('status', CategoryStatus::Active)->first();
+        $hasParentNavigation = (clone $baseQuery)->whereNull('parent_id')->first();
 
         return [
             'name' => 'Customisation',
@@ -96,10 +97,10 @@ class FeaturesOverview extends Widget
                     'url' => CategoryResource::getUrl('active-category', ['record' => $scopedNavigation]),
                     'resource' => 'Category',
                 ] : null,
-                $scopedNavigation ? [
+                $hasParentNavigation ? [
                     'name' => 'Custom query logic',
                     'description' => 'Override navigation queries per use-case',
-                    'url' => CategoryResource::getUrl('active-category', ['record' => $scopedNavigation]), // TODO: Override navigation logic
+                    'url' => CategoryResource::getUrl('parent-category', ['record' => $hasParentNavigation]),
                     'resource' => 'Category',
                 ] : null,
             ])),

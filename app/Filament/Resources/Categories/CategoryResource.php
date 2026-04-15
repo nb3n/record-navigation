@@ -7,6 +7,7 @@ use App\Filament\Resources\Categories\Pages\EditCategory;
 use App\Filament\Resources\Categories\Pages\ListCategories;
 use App\Filament\Resources\Categories\Pages\ViewCategory;
 use App\Filament\Resources\Categories\Pages\ViewActiveCategory;
+use App\Filament\Resources\Categories\Pages\ViewParentCategory;
 use App\Filament\Resources\Categories\Schemas\CategoryForm;
 use App\Filament\Resources\Categories\Schemas\CategoryInfolist;
 use App\Filament\Resources\Categories\Tables\CategoriesTable;
@@ -79,6 +80,7 @@ class CategoryResource extends Resource
             'view' => ViewCategory::route('/{record}'),
             'edit' => EditCategory::route('/{record}/edit'),
             'active-category' => ViewActiveCategory::route('/{record}/active'),
+            'parent-category' => ViewParentCategory::route('/{record}/top-category'),
         ];
     }
 
