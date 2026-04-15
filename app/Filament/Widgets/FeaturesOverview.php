@@ -26,13 +26,12 @@ class FeaturesOverview extends Widget
     public function getCategories(): array
     {
         $post = Post::query()->first();
-        $category = Category::query()->first();
 
         return array_filter(array_map(
             fn (?array $category): ?array => $category && count($category['features']) > 0 ? $category : null,
             [
                 $this->navigationBasics(),
-                $this->navigationCustomisation($category),
+                $this->navigationCustomisation(),
                 $this->navigationDX($post),
             ],
         ));
@@ -74,7 +73,7 @@ class FeaturesOverview extends Widget
         ];
     }
 
-    protected function navigationCustomisation(?Model $category): array
+    protected function navigationCustomisation(): array
     {
         $baseQuery = Category::query()->orderBy('id');
         $firstCategory = (clone $baseQuery)->first();
@@ -97,10 +96,10 @@ class FeaturesOverview extends Widget
                     'url' => CategoryResource::getUrl('active-category', ['record' => $scopedNavigation]),
                     'resource' => 'Category',
                 ] : null,
-                $category ? [
+                $scopedNavigation ? [
                     'name' => 'Custom query logic',
                     'description' => 'Override navigation queries per use-case',
-                    'url' => CategoryResource::getUrl('index'),
+                    'url' => CategoryResource::getUrl('active-category', ['record' => $scopedNavigation]), // TODO: Override navigation logic
                     'resource' => 'Category',
                 ] : null,
             ])),
