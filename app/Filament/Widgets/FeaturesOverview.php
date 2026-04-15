@@ -26,20 +26,19 @@ class FeaturesOverview extends Widget
     public function getCategories(): array
     {
         $post = Post::query()->first();
-        $user = User::query()->first();
         $category = Category::query()->first();
 
         return array_filter(array_map(
             fn (?array $category): ?array => $category && count($category['features']) > 0 ? $category : null,
             [
-                $this->navigationBasics($user),
+                $this->navigationBasics(),
                 $this->navigationCustomisation($category),
                 $this->navigationDX($post),
             ],
         ));
     }
 
-    protected function navigationBasics(?Model $post): array
+    protected function navigationBasics(): array
     {           
         $baseQuery = User::query()->orderBy('id');
         $total = (clone $baseQuery)->count();
