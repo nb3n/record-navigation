@@ -9,7 +9,7 @@ use Filament\Support\Icons\Heroicon;
 
 enum UserRole: string implements HasColor, HasIcon, HasLabel
 {
-    case Admin   = 'admin';
+    case Admin = 'admin';
     case General = 'general';
 
     public static function values(): array
@@ -20,7 +20,7 @@ enum UserRole: string implements HasColor, HasIcon, HasLabel
     public function getLabel(): string
     {
         return match ($this) {
-            self::Admin   => 'Admin',
+            self::Admin => 'Admin',
             self::General => 'General',
         };
     }
@@ -28,7 +28,7 @@ enum UserRole: string implements HasColor, HasIcon, HasLabel
     public function getColor(): string|array|null
     {
         return match ($this) {
-            self::Admin   => 'warning',
+            self::Admin => 'warning',
             self::General => 'gray',
         };
     }
@@ -36,7 +36,7 @@ enum UserRole: string implements HasColor, HasIcon, HasLabel
     public function getIcon(): ?Heroicon
     {
         return match ($this) {
-            self::Admin   => Heroicon::ShieldCheck,
+            self::Admin => Heroicon::ShieldCheck,
             self::General => Heroicon::User,
         };
     }

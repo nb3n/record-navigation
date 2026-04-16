@@ -3,13 +3,17 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Login;
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+use Filament\Actions\Action;
+use Filament\Enums\ThemeMode;
+use Filament\Enums\UserMenuPosition;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
+use Filament\Support\Icons\Heroicon;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -20,11 +24,6 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Saade\FilamentFacehash\FacehashPlugin;
 use Saade\FilamentFacehash\FacehashProvider;
-use Filament\Enums\ThemeMode;
-use Filament\Support\Icons\Heroicon;
-use Filament\Enums\UserMenuPosition;
-use Filament\Actions\Action;
-use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -97,7 +96,7 @@ class AdminPanelProvider extends PanelProvider
                     ->icon(Heroicon::OutlinedPuzzlePiece),
             ])
             ->userMenu(position: UserMenuPosition::Sidebar)
-            ->plugins([ 
+            ->plugins([
                 GlobalSearchModalPlugin::make()
                     ->showGroupSearchCounts(),
             ])

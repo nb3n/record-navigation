@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\Users\Schemas;
 
+use App\Models\User;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Flex;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use App\Models\User;
 
 class UserInfolist
 {
@@ -27,10 +27,10 @@ class UserInfolist
                                 ->copyable()
                                 ->badge()
                                 ->color('gray'),
-                            
+
                             TextEntry::make('role')
                                 ->badge(),
-                            
+
                             IconEntry::make('email_verified_at')
                                 ->label('Email Verified')
                                 ->boolean()
@@ -67,8 +67,8 @@ class UserInfolist
                             'class' => 'py-8 px-6',
                         ]),
                 ])
-                ->columnSpanFull()
-                ->from('md'),
+                    ->columnSpanFull()
+                    ->from('md'),
             ]);
     }
 }

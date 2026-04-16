@@ -4,8 +4,8 @@ namespace App\Filament\Resources\Categories\Schemas;
 
 use App\Models\Category;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Flex;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class CategoryInfolist
@@ -34,7 +34,7 @@ class CategoryInfolist
                                 ->label('Parent Category')
                                 ->badge()
                                 ->color('gray')
-                                ->visible(fn (Category $record): bool => !is_null($record->parent_id))
+                                ->visible(fn (Category $record): bool => ! is_null($record->parent_id))
                                 ->placeholder('None'),
                         ])
                         ->columns(3),
@@ -71,8 +71,8 @@ class CategoryInfolist
                             'class' => 'py-8 px-6',
                         ]),
                 ])
-                ->columnSpanFull()
-                ->from('md'),
+                    ->columnSpanFull()
+                    ->from('md'),
             ]);
     }
 }

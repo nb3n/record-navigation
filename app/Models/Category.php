@@ -84,8 +84,8 @@ class Category extends Model
 
             $query->whereNotIn('id', function ($q) use ($childId) {
                 $q->select('id')
-                  ->from('categories')
-                  ->where('parent_id', $childId);
+                    ->from('categories')
+                    ->where('parent_id', $childId);
             });
         }
 

@@ -5,11 +5,11 @@ namespace App\Filament\Resources\Categories\Pages;
 use App\Filament\Resources\Categories\CategoryResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
-use Nben\FilamentRecordNav\Enums\NavigationPage;
+use Illuminate\Database\Eloquent\Model;
 use Nben\FilamentRecordNav\Actions\NextRecordAction;
 use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Concerns\WithRecordNavigation;
-use Illuminate\Database\Eloquent\Model;
+use Nben\FilamentRecordNav\Enums\NavigationPage;
 
 class ViewParentCategory extends ViewRecord
 {
@@ -41,7 +41,7 @@ class ViewParentCategory extends ViewRecord
             ->orderBy('id', 'desc')
             ->first();
     }
- 
+
     public function getNextRecord(): ?Model
     {
         return $this->getRecord()

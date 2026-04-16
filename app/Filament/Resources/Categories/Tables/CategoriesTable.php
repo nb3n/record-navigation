@@ -2,23 +2,22 @@
 
 namespace App\Filament\Resources\Categories\Tables;
 
+use App\Enums\CategoryStatus;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Actions\DeleteAction;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\TrashedFilter;
-use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Table;
 use Filament\Tables\Enums\ColumnManagerLayout;
 use Filament\Tables\Enums\FiltersLayout;
-use App\Models\Category;
-use App\Enums\CategoryStatus;
-use Filament\Notifications\Notification;
-use Filament\Actions\ActionGroup;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
+use Filament\Tables\Table;
 
 class CategoriesTable
 {
@@ -89,7 +88,7 @@ class CategoriesTable
 
                     TrashedFilter::make()
                         ->native(false),
-                ], 
+                ],
                 layout: FiltersLayout::AboveContentCollapsible
             )
             ->filtersFormColumns(3)
@@ -99,7 +98,7 @@ class CategoriesTable
                         ViewAction::make(),
                         EditAction::make(),
                     ])
-                    ->dropdown(false),
+                        ->dropdown(false),
 
                     DeleteAction::make()
                         ->before(function ($action): void {
@@ -111,7 +110,7 @@ class CategoriesTable
                             $action->cancel();
                         }),
                 ])
-                ->tooltip('Actions'),
+                    ->tooltip('Actions'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

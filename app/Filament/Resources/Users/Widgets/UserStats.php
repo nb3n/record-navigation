@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\Users\Widgets;
 
+use App\Enums\UserRole;
 use App\Filament\Resources\Users\Pages\ListUsers;
 use Filament\Widgets\Concerns\InteractsWithPageTable;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-use App\Enums\UserRole;
 
 class UserStats extends BaseWidget
 {
@@ -30,11 +30,11 @@ class UserStats extends BaseWidget
         $userCount = (clone $query)
             ->count();
 
-        $verifiedUserCount =(clone $query)
+        $verifiedUserCount = (clone $query)
             ->whereNotNull('email_verified_at')
             ->count();
 
-        $adminUserCount =(clone $query)
+        $adminUserCount = (clone $query)
             ->where('role', UserRole::Admin)
             ->count();
 

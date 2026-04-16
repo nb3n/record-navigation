@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\Users\Pages;
 
 use App\Filament\Resources\Users\UserResource;
-use Filament\Resources\Pages\CreateRecord;
 use Filament\Notifications\Notification;
+use Filament\Resources\Pages\CreateRecord;
 
 class CreateUser extends CreateRecord
 {
@@ -16,8 +16,8 @@ class CreateUser extends CreateRecord
             ->title('Now, now, these records aren\'t yours to create!')
             ->warning()
             ->send();
-        
-        $this->form->fill(); 
+
+        $this->form->fill();
         $this->halt();
     }
 }

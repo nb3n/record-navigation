@@ -2,15 +2,15 @@
 
 namespace App\Filament\Resources\Categories\Pages;
 
+use App\Enums\CategoryStatus;
 use App\Filament\Resources\Categories\CategoryResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
-use Nben\FilamentRecordNav\Enums\NavigationPage;
+use Illuminate\Database\Eloquent\Model;
 use Nben\FilamentRecordNav\Actions\NextRecordAction;
 use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Concerns\WithRecordNavigation;
-use Illuminate\Database\Eloquent\Model;
-use App\Enums\CategoryStatus;
+use Nben\FilamentRecordNav\Enums\NavigationPage;
 
 class ViewActiveCategory extends ViewRecord
 {
@@ -42,7 +42,7 @@ class ViewActiveCategory extends ViewRecord
             ->orderBy('id', 'desc')
             ->first();
     }
- 
+
     public function getNextRecord(): ?Model
     {
         return $this->getRecord()

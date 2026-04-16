@@ -4,9 +4,6 @@ namespace App\Filament\Resources\Categories\Tables;
 
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use App\Enums\CategoryStatus;
-use App\Models\Category;
-
 
 class SelectParentCategoryTable extends CategoriesTable
 {

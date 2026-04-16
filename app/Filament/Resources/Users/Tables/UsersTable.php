@@ -2,22 +2,22 @@
 
 namespace App\Filament\Resources\Users\Tables;
 
+use App\Enums\UserRole;
+use App\Models\User;
+use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\ActionGroup;
 use Filament\Notifications\Notification;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\ColumnManagerLayout;
-use Filament\Tables\Table;
-use App\Models\User;
-use App\Enums\UserRole;
+use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
-use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Table;
 
 class UsersTable
 {
@@ -35,8 +35,8 @@ class UsersTable
                 ImageColumn::make('facehash_avatar_url')
                     ->label('Avatar')
                     ->circular(),
-                    
-                 TextColumn::make('created_at')
+
+                TextColumn::make('created_at')
                     ->since()
                     ->dateTimeTooltip('M d, Y H:i A')
                     ->label('Joined on')
@@ -65,7 +65,7 @@ class UsersTable
                         ->trueLabel('Verified')
                         ->falseLabel('Unverified')
                         ->native(false),
-                ], 
+                ],
                 layout: FiltersLayout::AboveContentCollapsible
             )
             ->recordActions([
@@ -74,7 +74,7 @@ class UsersTable
                         ViewAction::make(),
                         EditAction::make(),
                     ])
-                    ->dropdown(false),
+                        ->dropdown(false),
 
                     DeleteAction::make()
                         ->before(function ($action): void {
@@ -86,7 +86,7 @@ class UsersTable
                             $action->cancel();
                         }),
                 ])
-                ->tooltip('Actions'),
+                    ->tooltip('Actions'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

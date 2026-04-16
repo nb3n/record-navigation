@@ -5,11 +5,11 @@ namespace App\Filament\Resources\Users\Pages;
 use App\Filament\Resources\Users\UserResource;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
+use Illuminate\Database\Eloquent\Model;
 use Nben\FilamentRecordNav\Actions\NextRecordAction;
 use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Concerns\WithRecordNavigation;
 use Nben\FilamentRecordNav\Enums\NavigationPage;
-use Illuminate\Database\Eloquent\Model;
 
 class ViewVerifiedUser extends ViewRecord
 {
@@ -41,7 +41,7 @@ class ViewVerifiedUser extends ViewRecord
             ->orderBy('id', 'desc')
             ->first();
     }
- 
+
     public function getNextRecord(): ?Model
     {
         return $this->getRecord()

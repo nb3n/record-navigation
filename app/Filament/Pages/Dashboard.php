@@ -2,12 +2,10 @@
 
 namespace App\Filament\Pages;
 
-use Filament\Pages\Dashboard as BaseDashboard;
-use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Filament\Actions\Action;
-use Filament\Support\Icons\Heroicon;
+use Filament\Pages\Dashboard as BaseDashboard;
 use Filament\Support\Enums\IconPosition;
+use Filament\Support\Icons\Heroicon;
 
 class Dashboard extends BaseDashboard
 {

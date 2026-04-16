@@ -3,17 +3,16 @@
 namespace App\Filament\Resources\Categories\Schemas;
 
 use App\Enums\CategoryStatus;
-use App\Models\Category;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\ModalTableSelect;
-use Filament\Schemas\Components\Section;
-use Filament\Schemas\Schema;
-use Illuminate\Support\Str;
-use Filament\Support\Icons\Heroicon;
-use Filament\Schemas\Components\Utilities\Set;
 use App\Filament\Resources\Categories\Tables\SelectParentCategoryTable;
+use Filament\Forms\Components\ModalTableSelect;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Illuminate\Support\Str;
 
 class CategoryForm
 {
@@ -48,7 +47,7 @@ class CategoryForm
                             ->required()
                             ->prefixIcon(Heroicon::GlobeAlt)
                             ->unique(ignoreRecord: true)
-                            ->dehydrated() 
+                            ->dehydrated()
                             ->readonly()
                             ->maxLength(80),
 

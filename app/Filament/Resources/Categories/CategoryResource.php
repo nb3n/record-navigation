@@ -5,12 +5,13 @@ namespace App\Filament\Resources\Categories;
 use App\Filament\Resources\Categories\Pages\CreateCategory;
 use App\Filament\Resources\Categories\Pages\EditCategory;
 use App\Filament\Resources\Categories\Pages\ListCategories;
-use App\Filament\Resources\Categories\Pages\ViewCategory;
 use App\Filament\Resources\Categories\Pages\ViewActiveCategory;
+use App\Filament\Resources\Categories\Pages\ViewCategory;
 use App\Filament\Resources\Categories\Pages\ViewParentCategory;
 use App\Filament\Resources\Categories\Schemas\CategoryForm;
 use App\Filament\Resources\Categories\Schemas\CategoryInfolist;
 use App\Filament\Resources\Categories\Tables\CategoriesTable;
+use App\Filament\Resources\Categories\Widgets\CategoryStats;
 use App\Models\Category;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -19,7 +20,6 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\Categories\Widgets\CategoryStats;
 
 class CategoryResource extends Resource
 {
@@ -28,9 +28,9 @@ class CategoryResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedFolder;
 
     protected static ?int $navigationSort = 1;
-    
+
     protected static ?string $recordTitleAttribute = 'name';
-    
+
     protected static string|\UnitEnum|null $navigationGroup = 'Content';
 
     public static function getNavigationBadge(): ?string

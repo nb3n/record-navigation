@@ -7,11 +7,11 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Nben\FilamentRecordNav\Actions\NextRecordAction;
 use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Enums\NavigationPage;
-use Filament\Notifications\Notification;
 
 class EditCategory extends EditRecord
 {
@@ -27,7 +27,7 @@ class EditCategory extends EditRecord
                 ->navigateTo(NavigationPage::Edit),
 
             ViewAction::make(),
-            
+
             DeleteAction::make()
                 ->before(function ($action): void {
                     Notification::make()
@@ -37,7 +37,7 @@ class EditCategory extends EditRecord
 
                     $action->cancel();
                 }),
-                
+
             ForceDeleteAction::make()
                 ->before(function ($action): void {
                     Notification::make()
@@ -47,7 +47,7 @@ class EditCategory extends EditRecord
 
                     $action->cancel();
                 }),
-                
+
             RestoreAction::make()
                 ->before(function ($action): void {
                     Notification::make()
@@ -56,7 +56,7 @@ class EditCategory extends EditRecord
                         ->send();
 
                     $action->cancel();
-                }),                
+                }),
         ];
     }
 }

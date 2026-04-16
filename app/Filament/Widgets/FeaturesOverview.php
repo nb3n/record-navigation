@@ -2,21 +2,21 @@
 
 namespace App\Filament\Widgets;
 
-use Filament\Widgets\Widget;
+use App\Enums\CategoryStatus;
+use App\Filament\Resources\Categories\CategoryResource;
+use App\Filament\Resources\Posts\PostResource;
+use App\Filament\Resources\Users\UserResource;
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Category;
+use Filament\Widgets\Widget;
 use Illuminate\Database\Eloquent\Model;
-use App\Filament\Resources\Posts\PostResource;
-use App\Filament\Resources\Categories\CategoryResource;
-use App\Filament\Resources\Users\UserResource;
-use App\Enums\CategoryStatus;
 
 class FeaturesOverview extends Widget
 {
     protected string $view = 'filament.widgets.features-overview';
 
-    protected int | string | array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 'full';
 
     protected static bool $isLazy = false;
 
@@ -38,14 +38,14 @@ class FeaturesOverview extends Widget
     }
 
     protected function navigationBasics(): array
-    {           
+    {
         $baseQuery = User::query()->orderBy('id');
         $total = (clone $baseQuery)->count();
 
         $firstUser = (clone $baseQuery)->first();
         $middleUser = $total > 0 ? (clone $baseQuery)->offset((int) floor($total / 2))->first() : null;
         $verifiedUser = (clone $baseQuery)->whereNotNull('email_verified_at')->first();
-        
+
         return [
             'name' => 'Navigation Basics',
             'icon' => 'heroicon-o-arrow-right-circle',
@@ -107,32 +107,32 @@ class FeaturesOverview extends Widget
         ];
     }
 
-protected function navigationDX(?Model $post): array
-{
-    return [
-        'name' => 'Developer Experience',
-        'icon' => 'heroicon-o-code-bracket',
-        'color' => 'emerald',
-        'features' => array_values(array_filter([
-            $post ? [
-                'name' => 'Zero configuration',
-                'description' => 'Drop in actions and it works instantly',
-                'url' => PostResource::getUrl('index'),
-                'resource' => 'Posts',
-            ] : null,
-            $post ? [
-                'name' => 'No trait required',
-                'description' => 'Works without modifying your page class',
-                'url' => PostResource::getUrl('index'),
-                'resource' => 'Posts',
-            ] : null,
-            $post ? [
-                'name' => 'Optional overrides',
-                'description' => 'Add trait only when customization is needed',
-                'url' => PostResource::getUrl('index'),
-                'resource' => 'Posts',
-            ] : null,
-        ])),
-    ];
-}
+    protected function navigationDX(?Model $post): array
+    {
+        return [
+            'name' => 'Developer Experience',
+            'icon' => 'heroicon-o-code-bracket',
+            'color' => 'emerald',
+            'features' => array_values(array_filter([
+                $post ? [
+                    'name' => 'Zero configuration',
+                    'description' => 'Drop in actions and it works instantly',
+                    'url' => PostResource::getUrl('index'),
+                    'resource' => 'Posts',
+                ] : null,
+                $post ? [
+                    'name' => 'No trait required',
+                    'description' => 'Works without modifying your page class',
+                    'url' => PostResource::getUrl('index'),
+                    'resource' => 'Posts',
+                ] : null,
+                $post ? [
+                    'name' => 'Optional overrides',
+                    'description' => 'Add trait only when customization is needed',
+                    'url' => PostResource::getUrl('index'),
+                    'resource' => 'Posts',
+                ] : null,
+            ])),
+        ];
+    }
 }

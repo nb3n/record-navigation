@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('title');
             $table->string('slug')->unique()->index();
 
@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->timestamp('published_at')->nullable()->index();
             $table->timestamp('scheduled_at')->nullable()->index();
-            
+
             $table->boolean('is_featured')->default(false)->index();
             $table->unsignedBigInteger('views_count')->default(0);
 
