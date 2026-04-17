@@ -4,10 +4,13 @@ namespace App\Filament\Resources\Posts\Pages;
 
 use App\Filament\Resources\Posts\PostResource;
 use Filament\Actions\CreateAction;
+use Filament\Pages\Concerns\ExposesTableToWidgets;
 use Filament\Resources\Pages\ListRecords;
 
 class ListPosts extends ListRecords
 {
+    use ExposesTableToWidgets;
+    
     protected static string $resource = PostResource::class;
 
     protected function getHeaderActions(): array
@@ -15,5 +18,10 @@ class ListPosts extends ListRecords
         return [
             CreateAction::make(),
         ];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return PostResource::getWidgets();
     }
 }
