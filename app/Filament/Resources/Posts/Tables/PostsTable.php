@@ -26,13 +26,12 @@ class PostsTable
                 ImageColumn::make('cover_image')
                     ->label('Image')
                     ->square()
-                    ->checkFileExistence(true)
+                    ->checkFileExistence(false)
+                    ->disk('r2')
                     ->extraImgAttributes([
                         'loading' => 'lazy',
                         'class' => 'rounded-md'
-                    ])
-                    ->defaultImageUrl(url('https://fls-a148d4c6-2aa8-410e-b07a-1f12cf432f34.laravel.cloud/143/conversions/1aa69e68-a504-4495-bc38-5c520d035d8b-thumb.jpg')),
-
+                    ]),
                 
                 TextColumn::make('title')
                     ->searchable()
