@@ -11,9 +11,17 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Enums\ColumnManagerLayout;
 use Filament\Tables\Filters\TrashedFilter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Filament\Support\Enums\FontWeight;
+use App\Enums\PostStatus;
+use Filament\Tables\Filters\Filter;
+use Filament\Forms\Components\DatePicker;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 
 class PostsTable
 {
@@ -109,9 +117,75 @@ class PostsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                TrashedFilter::make(),
-            ])
+            ->filters(
+                [
+                    SelectFilter::make('status')
+                        ->label('Status')
+                        ->searchable()
+                        ->options(PostStatus::class)
+                        ->native(false),
+
+                    SelectFilter::make('categories')
+                        ->label('Categories')
+                        ->relationship('categories', 'name')
+                        ->searchable(['name'])
+                        ->preload()
+                        ->native(false),
+                        
+                    SelectFilter::make('authors')
+                        ->label('Authors')
+                        ->relationship('authors', 'name')
+                        ->searchable(['name', 'email'])
+                        ->preload()
+                        ->native(false),
+
+                    Filter::make('published_at')
+                        ->schema([
+                            DatePicker::make('published_from')
+                                ->placeholder(fn ($state): string => 'Dec 18, ' . now()->subYear()->format('Y'))
+                                ->displayFormat('d M, Y')
+                                ->closeOnDateSelection()
+                                ->native(false),
+
+                            DatePicker::make('published_until')
+                                ->placeholder(fn ($state): string => now()->format('M d, Y'))
+                                ->displayFormat('d M, Y')
+                                ->closeOnDateSelection()
+                                ->native(false),
+
+                        ])
+                        ->columns(2)
+                        ->query(function (Builder $query, array $data): Builder {
+                            return $query
+                                ->when(
+                                    $data['published_from'] ?? null,
+                                    fn (Builder $query, $date): Builder => $query->whereDate('published_at', '>=', $date),
+                                )
+                                ->when(
+                                    $data['published_until'] ?? null,
+                                    fn (Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
+                                );
+                        })
+                        ->indicateUsing(function (array $data): array {
+                            $indicators = [];
+                            if ($data['published_from'] ?? null) {
+                                $indicators['published_from'] = 'Published from ' . Carbon::parse($data['published_from'])->toFormattedDateString();
+                            }
+                            if ($data['published_until'] ?? null) {
+                                $indicators['published_until'] = 'Published until ' . Carbon::parse($data['published_until'])->toFormattedDateString();
+                            }
+
+                            return $indicators;
+                        })
+                        ->columnSpan(2),   
+
+                    TrashedFilter::make()
+                        ->searchable()
+                        ->native(false),
+                ],
+                layout: FiltersLayout::AboveContentCollapsible
+            )
+            ->filtersFormColumns(3)
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
