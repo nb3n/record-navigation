@@ -13,42 +13,100 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use Filament\Support\Enums\FontWeight;
 
 class PostsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
+            ->heading('Posts')
+            ->description('Browse and manage posts across different statuses and featured content.')
             ->columns([
+                ImageColumn::make('cover_image')
+                    ->label('Image')
+                    ->square()
+                    ->checkFileExistence(true)
+                    ->extraImgAttributes([
+                        'loading' => 'lazy',
+                        'class' => 'rounded-md'
+                    ])
+                    ->defaultImageUrl(url('https://fls-a148d4c6-2aa8-410e-b07a-1f12cf432f34.laravel.cloud/143/conversions/1aa69e68-a504-4495-bc38-5c520d035d8b-thumb.jpg')),
+
+                
                 TextColumn::make('title')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable()
+                    ->weight(FontWeight::Medium),
+
                 TextColumn::make('slug')
-                    ->searchable(),
-                ImageColumn::make('cover_image'),
+                    ->badge()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                ImageColumn::make('authors.facehash_avatar_url')
+                    ->label('Authors')
+                    ->circular()
+                    ->stacked()
+                    ->limit(3)
+                    ->limitedRemainingText()
+                    ->checkFileExistence(false)
+                    ->extraImgAttributes([
+                        'loading' => 'lazy',
+                    ])
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('categories.name')
+                    ->searchable()
+                    ->badge()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('status')
                     ->badge()
                     ->searchable(),
-                TextColumn::make('published_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('scheduled_at')
-                    ->dateTime()
-                    ->sortable(),
+                
                 IconColumn::make('is_featured')
                     ->boolean(),
+
                 TextColumn::make('views_count')
+                    ->label('Views')
                     ->numeric()
-                    ->sortable(),
+                    ->badge()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('published_at')
+                    ->label('Published')
+                    ->since()
+                    ->dateTimeTooltip('M d, Y H:i A')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('scheduled_at')
+                    ->label('Scheduled')
+                    ->since()
+                    ->dateTimeTooltip('M d, Y H:i A')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Created')
+                    ->since()
+                    ->dateTimeTooltip('M d, Y H:i A')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Last Updated')
+                    ->since()
+                    ->dateTimeTooltip('M d, Y H:i A')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('deleted_at')
-                    ->dateTime()
+                    ->label('Deleted')
+                    ->since()
+                    ->dateTimeTooltip('M d, Y H:i A')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
