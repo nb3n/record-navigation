@@ -85,9 +85,10 @@ class PostForm
                                             ->required()
                                             ->prefixIcon(Heroicon::Signal)
                                             ->live(onBlur: true)
-                                            ->maxLength(60)
+                                            ->maxLength(100)
                                             ->afterStateUpdated(function (Set $set, ?string $state) {
                                                 $cleanedState = preg_replace('/\s+/', ' ', trim($state ?? ''));
+                                                
                                                 $slug = Str::slug(str_replace('&', 'and', $cleanedState));
 
                                                 $set('slug', $slug);
@@ -103,7 +104,7 @@ class PostForm
                                             ->unique(ignoreRecord: true)
                                             ->dehydrated()
                                             ->readonly()
-                                            ->maxLength(80),
+                                            ->maxLength(120),
 
                                         Textarea::make('description')
                                             ->label('Post Summary')
