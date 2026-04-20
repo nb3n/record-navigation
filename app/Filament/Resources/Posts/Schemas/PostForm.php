@@ -87,8 +87,6 @@ class PostForm
                                             ->live(onBlur: true)
                                             ->maxLength(60)
                                             ->afterStateUpdated(function (Set $set, ?string $state) {
-                                                if (filled($get('slug'))) return;
-
                                                 $cleanedState = preg_replace('/\s+/', ' ', trim($state ?? ''));
                                                 $slug = Str::slug(str_replace('&', 'and', $cleanedState));
 
