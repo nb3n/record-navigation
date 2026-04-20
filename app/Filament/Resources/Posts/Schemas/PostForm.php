@@ -16,7 +16,6 @@ use Illuminate\Support\Str;
 use Filament\Support\Icons\Heroicon;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\Utilities\Get;
-use Filament\Schemas\Components\Flex;
 use Filament\Schemas\Components\Grid;
 
 class PostForm
