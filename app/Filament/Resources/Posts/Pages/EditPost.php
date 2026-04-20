@@ -21,6 +21,7 @@ class EditPost extends EditRecord
             ->warning()
             ->send();
 
+        $this->fillForm();
         $this->halt();
     }
 
