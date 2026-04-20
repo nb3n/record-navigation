@@ -14,6 +14,16 @@ class EditPost extends EditRecord
 {
     protected static string $resource = PostResource::class;
 
+    protected function beforeSave(): void
+    {
+        Notification::make()
+            ->title('Now, now, these records aren\'t yours to edit!')
+            ->warning()
+            ->send();
+
+        $this->halt();
+    }
+
     protected function getHeaderActions(): array
     {
         return [
