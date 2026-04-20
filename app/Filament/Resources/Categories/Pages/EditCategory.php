@@ -23,10 +23,11 @@ class EditCategory extends EditRecord
             ->title('Now, now, these records aren\'t yours to edit!')
             ->warning()
             ->send();
-
+            
+        $this->fillForm();
         $this->halt();
     }
-    
+
     protected function getHeaderActions(): array
     {
         return [
