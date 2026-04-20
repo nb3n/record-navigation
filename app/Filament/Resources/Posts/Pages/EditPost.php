@@ -7,6 +7,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPost extends EditRecord
@@ -17,9 +18,35 @@ class EditPost extends EditRecord
     {
         return [
             ViewAction::make(),
-            DeleteAction::make(),
-            ForceDeleteAction::make(),
-            RestoreAction::make(),
+            DeleteAction::make()
+                ->before(function ($action): void {
+                    Notification::make()
+                        ->title('Now, now, don\'t be cheeky, leave some records for others to play with!')
+                        ->warning()
+                        ->send();
+
+                    $action->cancel();
+                }),
+
+            ForceDeleteAction::make()
+                ->before(function ($action): void {
+                    Notification::make()
+                        ->title('Now, now, don\'t be cheeky, leave some records for others to play with!')
+                        ->warning()
+                        ->send();
+
+                    $action->cancel();
+                }),
+
+            RestoreAction::make()
+                ->before(function ($action): void {
+                    Notification::make()
+                        ->title('Now, now, these records aren\'t yours to restore!')
+                        ->warning()
+                        ->send();
+
+                    $action->cancel();
+                }),
         ];
     }
 }
