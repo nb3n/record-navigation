@@ -9,7 +9,6 @@ use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Icons\Heroicon;
 use Filament\Notifications\Notification;
-use Illuminate\Contracts\Support\Htmlable;
 use App\Enums\PostStatus;
 
 class ViewPost extends ViewRecord
