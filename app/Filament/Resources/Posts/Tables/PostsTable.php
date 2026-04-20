@@ -139,6 +139,16 @@ class PostsTable
                         ->preload()
                         ->native(false),
 
+                    SelectFilter::make('is_featured')
+                        ->label('Featured')
+                        ->searchable()
+                        ->preload()
+                        ->options([
+                            1 => 'Featured',
+                            0 => 'Not Featured',
+                        ])
+                        ->native(false),
+
                     Filter::make('published_at')
                         ->schema([
                             DatePicker::make('published_from')
