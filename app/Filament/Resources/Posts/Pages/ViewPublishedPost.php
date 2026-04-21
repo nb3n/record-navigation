@@ -80,6 +80,7 @@ class ViewPublishedPost extends ViewRecord
         return $this->getRecord()
             ->newQuery()
             ->where('status', PostStatus::Published)
+            ->where('id', '<', $this->getRecord()->id)
             ->orderBy('id', 'desc')
             ->first();
     }
@@ -89,6 +90,7 @@ class ViewPublishedPost extends ViewRecord
         return $this->getRecord()
             ->newQuery()
             ->where('status', PostStatus::Published)
+            ->where('id', '>', $this->getRecord()->id)
             ->orderBy('id', 'asc')
             ->first();
     }
