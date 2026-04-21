@@ -10,6 +10,9 @@ use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Icons\Heroicon;
 use Filament\Notifications\Notification;
 use App\Enums\PostStatus;
+use Nben\FilamentRecordNav\Actions\NextRecordAction;
+use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
+use Nben\FilamentRecordNav\Enums\NavigationPage;
 
 class ViewPost extends ViewRecord
 {
@@ -18,6 +21,12 @@ class ViewPost extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
+            PreviousRecordAction::make()
+                ->navigateTo(NavigationPage::View),
+
+            NextRecordAction::make()
+                ->navigateTo(NavigationPage::View),
+                
             Action::make('quick_publish')
                 ->icon(Heroicon::RocketLaunch)
                 ->color('success')
