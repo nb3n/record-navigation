@@ -159,6 +159,7 @@ class PostForm
                                             ->required()
                                             ->directory('media/posts')
                                             ->maxSize(256)
+                                            ->disabled()
                                             ->helperText('Upload a featured image for this post.')
                                             ->columnSpanFull(),
                                     ])
