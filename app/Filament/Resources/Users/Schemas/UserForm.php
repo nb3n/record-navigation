@@ -45,7 +45,7 @@ class UserForm
                             ->default(UserRole::General)
                             ->searchable()
                             ->native(false)
-                            ->prefixIcon(Heroicon::Shield)
+                            ->prefixIcon(Heroicon::ShieldCheck)
                             ->helperText('Select the user role to define access level.')
                             ->required(),
                     ])
