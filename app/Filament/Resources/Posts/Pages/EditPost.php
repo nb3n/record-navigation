@@ -9,6 +9,9 @@ use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use Nben\FilamentRecordNav\Actions\NextRecordAction;
+use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
+use Nben\FilamentRecordNav\Enums\NavigationPage;
 
 class EditPost extends EditRecord
 {
@@ -28,6 +31,12 @@ class EditPost extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            PreviousRecordAction::make()
+                ->navigateTo(NavigationPage::Edit),
+
+            NextRecordAction::make()
+                ->navigateTo(NavigationPage::Edit),
+
             ViewAction::make(),
             DeleteAction::make()
                 ->before(function ($action): void {
