@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Enums\CategoryStatus;
+use App\Enums\PostStatus;
 use App\Filament\Resources\Categories\CategoryResource;
 use App\Filament\Resources\Posts\PostResource;
 use App\Filament\Resources\Users\UserResource;
@@ -25,14 +26,12 @@ class FeaturesOverview extends Widget
      */
     public function getCategories(): array
     {
-        $post = Post::query()->first();
-
         return array_filter(array_map(
             fn (?array $category): ?array => $category && count($category['features']) > 0 ? $category : null,
             [
                 $this->navigationBasics(),
                 $this->navigationCustomisation(),
-                $this->navigationDX($post),
+                $this->navigationDX(),
             ],
         ));
     }
@@ -107,29 +106,33 @@ class FeaturesOverview extends Widget
         ];
     }
 
-    protected function navigationDX(?Model $post): array
+    protected function navigationDX(): array
     {
+        $baseQuery = Post::query()->orderBy('id');
+        $firstPost = (clone $baseQuery)->first();
+        $scopedNavigation = (clone $baseQuery)->where('status', PostStatus::Published)->first();
+
         return [
             'name' => 'Developer Experience',
             'icon' => 'heroicon-o-code-bracket',
             'color' => 'emerald',
             'features' => array_values(array_filter([
-                $post ? [
+                $firstPost ? [
                     'name' => 'Zero configuration',
                     'description' => 'Drop in actions and it works instantly',
-                    'url' => PostResource::getUrl('index'),
+                    'url' => PostResource::getUrl('view', ['record' => $firstPost]),
                     'resource' => 'Posts',
                 ] : null,
-                $post ? [
+                $firstPost ? [
                     'name' => 'No trait required',
                     'description' => 'Works without modifying your page class',
-                    'url' => PostResource::getUrl('index'),
+                    'url' => PostResource::getUrl('view', ['record' => $firstPost]),
                     'resource' => 'Posts',
                 ] : null,
-                $post ? [
+                $scopedNavigation ? [
                     'name' => 'Optional overrides',
                     'description' => 'Add trait only when customization is needed',
-                    'url' => PostResource::getUrl('index'),
+                    'url' => PostResource::getUrl('published-view', ['record' => $scopedNavigation]),
                     'resource' => 'Posts',
                 ] : null,
             ])),
