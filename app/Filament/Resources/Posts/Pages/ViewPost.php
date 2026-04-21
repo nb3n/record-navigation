@@ -33,6 +33,13 @@ class ViewPost extends ViewRecord
                 ->keyBindings(['mod+shift+p'])
                 ->visible(fn (Post $record): bool => ! $record->published_at?->isPast())
                 ->action(function (Post $record): void {
+                    Notification::make()
+                        ->title('Now, now, these records aren\'t yours to change!')
+                        ->warning()
+                        ->send();
+
+                    $this->halt();
+                    
                     $record->update([
                         'published_at' => now(),
                         'scheduled_at' => null,
@@ -52,6 +59,13 @@ class ViewPost extends ViewRecord
                 ->color('warning')
                 ->visible(fn (Post $record): bool => (bool) $record->published_at?->isPast())
                 ->action(function (Post $record): void {
+                    Notification::make()
+                        ->title('Now, now, these records aren\'t yours to change!')
+                        ->warning()
+                        ->send();
+
+                    $this->halt();
+
                     $record->update([
                         'published_at' => null,
                         'status' => PostStatus::Draft,
