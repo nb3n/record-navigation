@@ -59,7 +59,7 @@ class FeaturesOverview extends Widget
                 $firstUser ? [
                     'name' => 'Smart boundaries',
                     'description' => 'Buttons disable at first and last record',
-                    'url' => UserResource::getUrl('view', ['record' => $firstUser]),
+                    'url' => UserResource::getUrl('smart-boundaries', ['record' => $firstUser]),
                     'resource' => 'Users',
                 ] : null,
                 $verifiedUser ? [

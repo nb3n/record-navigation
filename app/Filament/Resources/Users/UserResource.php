@@ -6,6 +6,7 @@ use App\Filament\Resources\Users\Pages\CreateUser;
 use App\Filament\Resources\Users\Pages\EditUser;
 use App\Filament\Resources\Users\Pages\ListUsers;
 use App\Filament\Resources\Users\Pages\ViewUser;
+use App\Filament\Resources\Users\Pages\ViewSmartBoundariesUser;
 use App\Filament\Resources\Users\Pages\ViewVerifiedUser;
 use App\Filament\Resources\Users\Schemas\UserForm;
 use App\Filament\Resources\Users\Schemas\UserInfolist;
@@ -74,7 +75,8 @@ class UserResource extends Resource
         return [
             'index' => ListUsers::route('/'),
             'create' => CreateUser::route('/create'),
-            'view' => ViewUser::route('/{record}'),
+            'view' => ViewUser::route('/{record}'),            
+            'smart-boundaries' => ViewSmartBoundariesUser::route('/{record}/smart-boundaries'),
             'verified-view' => ViewVerifiedUser::route('/{record}/verified'),
             'edit' => EditUser::route('/{record}/edit'),
         ];
