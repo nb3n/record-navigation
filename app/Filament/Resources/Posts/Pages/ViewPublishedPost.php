@@ -38,6 +38,7 @@ class ViewPublishedPost extends ViewRecord
             NextRecordAction::make()
                 ->tooltip('Next Published Post')
                 ->navigateTo(NavigationPage::custom('published-view')),
+            
             Action::make('docs')
                 ->button()
                 ->outlined()
