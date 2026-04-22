@@ -6,6 +6,7 @@ use App\Filament\Resources\Posts\Pages\CreatePost;
 use App\Filament\Resources\Posts\Pages\EditPost;
 use App\Filament\Resources\Posts\Pages\ListPosts;
 use App\Filament\Resources\Posts\Pages\ViewPost;
+use App\Filament\Resources\Posts\Pages\ViewNoTraitPost;
 use App\Filament\Resources\Posts\Pages\ViewPublishedPost;
 use App\Filament\Resources\Posts\Schemas\PostForm;
 use App\Filament\Resources\Posts\Schemas\PostInfolist;
@@ -77,6 +78,7 @@ class PostResource extends Resource
             'index' => ListPosts::route('/'),
             'create' => CreatePost::route('/create'),
             'view' => ViewPost::route('/{record}'),
+            'no-trait-view' => ViewNoTraitPost::route('/{record}/no-trait'),
             'published-view' => ViewPublishedPost::route('/{record}/published'),
             'edit' => EditPost::route('/{record}/edit'),
         ];

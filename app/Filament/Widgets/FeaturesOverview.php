@@ -126,7 +126,7 @@ class FeaturesOverview extends Widget
                 $firstPost ? [
                     'name' => 'No trait required',
                     'description' => 'Works without modifying your page class',
-                    'url' => PostResource::getUrl('view', ['record' => $firstPost]),
+                    'url' => PostResource::getUrl('no-trait-view', ['record' => $firstPost]),
                     'resource' => 'Posts',
                 ] : null,
                 $scopedNavigation ? [
