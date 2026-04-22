@@ -13,10 +13,16 @@ use App\Enums\PostStatus;
 use Nben\FilamentRecordNav\Actions\NextRecordAction;
 use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Enums\NavigationPage;
+use Filament\Infolists\Components\TextEntry;
 
 class ViewPost extends ViewRecord
 {
     protected static string $resource = PostResource::class;
+
+    protected function getDoc(string $path): string
+    {
+        return file_get_contents(resource_path("docs/{$path}.md"));
+    }
 
     protected function getHeaderActions(): array
     {
@@ -27,6 +33,22 @@ class ViewPost extends ViewRecord
             NextRecordAction::make()
                 ->navigateTo(NavigationPage::View),
                 
+            Action::make('docs')
+                ->button()
+                ->outlined()
+                ->label('Docs')
+                ->infolist([
+                    TextEntry::make('content')
+                        ->state(fn () => $this->getDoc('post/07-zero-configuration'))
+                        ->markdown()
+                        ->prose()
+                        ->hiddenLabel()
+                        ->columnSpanFull(),
+                ])
+                ->slideOver()
+                ->modalSubmitAction(false)
+                ->modalCancelAction(false),
+
             Action::make('quick_publish')
                 ->icon(Heroicon::RocketLaunch)
                 ->color('success')
