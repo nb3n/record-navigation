@@ -10,12 +10,19 @@ use Nben\FilamentRecordNav\Actions\NextRecordAction;
 use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Concerns\WithRecordNavigation;
 use Nben\FilamentRecordNav\Enums\NavigationPage;
+use Filament\Actions\Action;
+use Filament\Infolists\Components\TextEntry;
 
 class ViewVerifiedUser extends ViewRecord
 {
     use WithRecordNavigation;
 
     protected static string $resource = UserResource::class;
+
+    protected function getDoc(string $path): string
+    {
+        return file_get_contents(resource_path("docs/{$path}.md"));
+    }
 
     protected function getHeaderActions(): array
     {
@@ -27,6 +34,22 @@ class ViewVerifiedUser extends ViewRecord
             NextRecordAction::make()
                 ->tooltip('Next Verified User')
                 ->navigateTo(NavigationPage::custom('verified-view')),
+
+            Action::make('docs')
+                ->button()
+                ->outlined()
+                ->label('Docs')
+                ->infolist([
+                    TextEntry::make('content')
+                        ->state(fn () => $this->getDoc('user/03-single-query-resolution'))
+                        ->markdown()
+                        ->prose()
+                        ->hiddenLabel()
+                        ->columnSpanFull(),
+                ])
+                ->slideOver()
+                ->modalSubmitAction(false)
+                ->modalCancelAction(false),
 
             EditAction::make(),
         ];
