@@ -28,10 +28,10 @@ class ViewNoTraitPost extends ViewRecord
     {
         return [
             PreviousRecordAction::make()
-                ->navigateTo(NavigationPage::View),
+                ->navigateTo(NavigationPage::custom('no-trait-view')),
 
             NextRecordAction::make()
-                ->navigateTo(NavigationPage::View),
+                ->navigateTo(NavigationPage::custom('no-trait-view')),
                 
             Action::make('docs')
                 ->button()
