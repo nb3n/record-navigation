@@ -15,12 +15,18 @@ use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Concerns\WithRecordNavigation;
 use Nben\FilamentRecordNav\Enums\NavigationPage;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Infolists\Components\TextEntry;
 
 class ViewPublishedPost extends ViewRecord
 {
     use WithRecordNavigation;
 
     protected static string $resource = PostResource::class;
+
+    protected function getDoc(string $path): string
+    {
+        return file_get_contents(resource_path("docs/{$path}.md"));
+    }
 
     protected function getHeaderActions(): array
     {
@@ -32,6 +38,21 @@ class ViewPublishedPost extends ViewRecord
             NextRecordAction::make()
                 ->tooltip('Next Published Post')
                 ->navigateTo(NavigationPage::custom('published-view')),
+            Action::make('docs')
+                ->button()
+                ->outlined()
+                ->label('Docs')
+                ->infolist([
+                    TextEntry::make('content')
+                        ->state(fn () => $this->getDoc('post/09-optional-overrides-and-custom-routes'))
+                        ->markdown()
+                        ->prose()
+                        ->hiddenLabel()
+                        ->columnSpanFull(),
+                ])
+                ->slideOver()
+                ->modalSubmitAction(false)
+                ->modalCancelAction(false),
 
             Action::make('quick_publish')
                 ->icon(Heroicon::RocketLaunch)
