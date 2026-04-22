@@ -23,11 +23,12 @@ class ViewSmartBoundariesUser extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            PreviousRecordAction::make()
-                ->navigateTo(NavigationPage::View),
+            PreviousRecordAction::make()                
+                ->navigateTo(NavigationPage::custom('smart-boundaries')),
+
 
             NextRecordAction::make()
-                ->navigateTo(NavigationPage::View),
+                ->navigateTo(NavigationPage::custom('smart-boundaries')),
 
             Action::make('docs')
                 ->button()
