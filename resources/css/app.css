@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
 @import 'tailwindcss';
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -240,4 +242,9 @@
   html {
     @apply font-sans;
     }
+}
+
+.font-instrument {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
 }

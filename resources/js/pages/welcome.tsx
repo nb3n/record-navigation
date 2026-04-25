@@ -1,3 +1,4 @@
+import AgencyHeroSection from '@/components/blocks/hero';
 import { Head } from '@inertiajs/react';
 
 export default function Welcome() {
@@ -10,7 +11,7 @@ export default function Welcome() {
                     rel="stylesheet"
                 />
             </Head>
-            ui WIP
+            <AgencyHeroSection />
         </>
     );
 }
