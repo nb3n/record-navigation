@@ -10,7 +10,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListPosts extends ListRecords
 {
     use ExposesTableToWidgets;
-    
+
     protected static string $resource = PostResource::class;
 
     protected function getHeaderActions(): array

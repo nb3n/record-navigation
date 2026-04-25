@@ -49,9 +49,9 @@ class UserInfolist
                                     ->columnSpanFull(),
                             ])
                             ->columnSpan(2),
-                        
+
                         Grid::make()
-                            ->schema([    
+                            ->schema([
                                 Section::make('Activity')
                                     ->description('Account creation and recent update history.')
                                     ->schema([
@@ -75,8 +75,8 @@ class UserInfolist
                             ])
                             ->columnSpan(1)
                             ->grow(false),
-                ])
-                ->columnSpanFull(),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 }

@@ -2,29 +2,28 @@
 
 namespace App\Filament\Resources\Posts\Tables;
 
+use App\Enums\PostStatus;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Forms\Components\DatePicker;
+use Filament\Notifications\Notification;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
-use Filament\Tables\Enums\ColumnManagerLayout;
-use Filament\Tables\Filters\TrashedFilter;
-use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Table;
-use Filament\Support\Enums\FontWeight;
-use App\Enums\PostStatus;
 use Filament\Tables\Filters\Filter;
-use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use Filament\Notifications\Notification;
 
 class PostsTable
 {
@@ -41,9 +40,9 @@ class PostsTable
                     ->disk('r2')
                     ->extraImgAttributes([
                         'loading' => 'lazy',
-                        'class' => 'rounded-md'
+                        'class' => 'rounded-md',
                     ]),
-                
+
                 TextColumn::make('title')
                     ->searchable()
                     ->sortable()
@@ -74,7 +73,7 @@ class PostsTable
                 TextColumn::make('status')
                     ->badge()
                     ->searchable(),
-                
+
                 IconColumn::make('is_featured')
                     ->boolean(),
 
@@ -134,7 +133,7 @@ class PostsTable
                         ->searchable(['name'])
                         ->preload()
                         ->native(false),
-                        
+
                     SelectFilter::make('authors')
                         ->label('Authors')
                         ->relationship('authors', 'name')
@@ -155,7 +154,7 @@ class PostsTable
                     Filter::make('published_at')
                         ->schema([
                             DatePicker::make('published_from')
-                                ->placeholder(fn ($state): string => 'Dec 18, ' . now()->subYear()->format('Y'))
+                                ->placeholder(fn ($state): string => 'Dec 18, '.now()->subYear()->format('Y'))
                                 ->displayFormat('d M, Y')
                                 ->closeOnDateSelection()
                                 ->native(false),
@@ -182,15 +181,15 @@ class PostsTable
                         ->indicateUsing(function (array $data): array {
                             $indicators = [];
                             if ($data['published_from'] ?? null) {
-                                $indicators['published_from'] = 'Published from ' . Carbon::parse($data['published_from'])->toFormattedDateString();
+                                $indicators['published_from'] = 'Published from '.Carbon::parse($data['published_from'])->toFormattedDateString();
                             }
                             if ($data['published_until'] ?? null) {
-                                $indicators['published_until'] = 'Published until ' . Carbon::parse($data['published_until'])->toFormattedDateString();
+                                $indicators['published_until'] = 'Published until '.Carbon::parse($data['published_until'])->toFormattedDateString();
                             }
 
                             return $indicators;
                         })
-                        ->columnSpan(2),   
+                        ->columnSpan(2),
 
                     TrashedFilter::make()
                         ->searchable()
@@ -205,7 +204,7 @@ class PostsTable
                         ViewAction::make(),
                         EditAction::make(),
                     ])
-                    ->dropdown(false),
+                        ->dropdown(false),
 
                     DeleteAction::make()
                         ->before(function ($action): void {
@@ -217,7 +216,7 @@ class PostsTable
                             $action->cancel();
                         }),
                 ])
-                ->tooltip('Actions'),
+                    ->tooltip('Actions'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

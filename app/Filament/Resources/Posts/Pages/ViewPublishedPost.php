@@ -2,20 +2,20 @@
 
 namespace App\Filament\Resources\Posts\Pages;
 
+use App\Enums\PostStatus;
 use App\Filament\Resources\Posts\PostResource;
 use App\Models\Post;
 use Filament\Actions\Action;
 use Filament\Actions\EditAction;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Icons\Heroicon;
-use Filament\Notifications\Notification;
-use App\Enums\PostStatus;
+use Illuminate\Database\Eloquent\Model;
 use Nben\FilamentRecordNav\Actions\NextRecordAction;
 use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Concerns\WithRecordNavigation;
 use Nben\FilamentRecordNav\Enums\NavigationPage;
-use Illuminate\Database\Eloquent\Model;
-use Filament\Infolists\Components\TextEntry;
 
 class ViewPublishedPost extends ViewRecord
 {
@@ -38,7 +38,7 @@ class ViewPublishedPost extends ViewRecord
             NextRecordAction::make()
                 ->tooltip('Next Published Post')
                 ->navigateTo(NavigationPage::custom('published-view')),
-            
+
             Action::make('docs')
                 ->button()
                 ->outlined()
@@ -67,7 +67,7 @@ class ViewPublishedPost extends ViewRecord
                         ->send();
 
                     $this->halt();
-                    
+
                     $record->update([
                         'published_at' => now(),
                         'scheduled_at' => null,

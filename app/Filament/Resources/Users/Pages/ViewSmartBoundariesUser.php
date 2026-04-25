@@ -3,13 +3,13 @@
 namespace App\Filament\Resources\Users\Pages;
 
 use App\Filament\Resources\Users\UserResource;
+use Filament\Actions\Action;
 use Filament\Actions\EditAction;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Pages\ViewRecord;
 use Nben\FilamentRecordNav\Actions\NextRecordAction;
 use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Enums\NavigationPage;
-use Filament\Actions\Action;
-use Filament\Infolists\Components\TextEntry;
 
 class ViewSmartBoundariesUser extends ViewRecord
 {
@@ -23,9 +23,8 @@ class ViewSmartBoundariesUser extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            PreviousRecordAction::make()                
+            PreviousRecordAction::make()
                 ->navigateTo(NavigationPage::custom('smart-boundaries')),
-
 
             NextRecordAction::make()
                 ->navigateTo(NavigationPage::custom('smart-boundaries')),
@@ -45,7 +44,7 @@ class ViewSmartBoundariesUser extends ViewRecord
                 ->slideOver()
                 ->modalSubmitAction(false)
                 ->modalCancelAction(false),
-            
+
             EditAction::make(),
         ];
     }

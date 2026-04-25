@@ -5,18 +5,18 @@ namespace App\Filament\Resources\Posts\Schemas;
 use App\Enums\PostStatus;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
-use Filament\Schemas\Components\Section;
-use Filament\Schemas\Schema;
-use Illuminate\Support\Str;
-use Filament\Support\Icons\Heroicon;
-use Filament\Schemas\Components\Utilities\Set;
-use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Illuminate\Support\Str;
 
 class PostForm
 {
@@ -88,7 +88,7 @@ class PostForm
                                             ->maxLength(100)
                                             ->afterStateUpdated(function (Set $set, ?string $state) {
                                                 $cleanedState = preg_replace('/\s+/', ' ', trim($state ?? ''));
-                                                
+
                                                 $slug = Str::slug(str_replace('&', 'and', $cleanedState));
 
                                                 $set('slug', $slug);
@@ -167,7 +167,7 @@ class PostForm
                                     ->columnSpanFull(),
                             ])
                             ->columnSpan(2),
-                        
+
                         Grid::make()
                             ->schema([
                                 Section::make('Publishing')
@@ -201,13 +201,11 @@ class PostForm
                                             ->closeOnDateSelection()
                                             ->prefixIcon(Heroicon::CheckBadge)
                                             ->live()
-                                            ->afterStateUpdated(fn (Set $set, Get $get) =>
-                                                static::resolveStatus($get('status')) !== 'published'
+                                            ->afterStateUpdated(fn (Set $set, Get $get) => static::resolveStatus($get('status')) !== 'published'
                                                     ? $set('status', 'published')
                                                     : null
                                             )
-                                            ->visible(fn (Get $get): bool =>
-                                                static::resolveStatus($get('status')) === 'published'
+                                            ->visible(fn (Get $get): bool => static::resolveStatus($get('status')) === 'published'
                                             )
                                             ->native(false),
 
@@ -220,19 +218,17 @@ class PostForm
                                             ->closeOnDateSelection()
                                             ->prefixIcon(Heroicon::Calendar)
                                             ->live()
-                                            ->afterStateUpdated(fn (Set $set, Get $get) =>
-                                                static::resolveStatus($get('status')) !== 'scheduled'
+                                            ->afterStateUpdated(fn (Set $set, Get $get) => static::resolveStatus($get('status')) !== 'scheduled'
                                                     ? $set('status', 'scheduled')
                                                     : null
                                             )
-                                            ->visible(fn (Get $get): bool =>
-                                                static::resolveStatus($get('status')) === 'scheduled'
+                                            ->visible(fn (Get $get): bool => static::resolveStatus($get('status')) === 'scheduled'
                                             )
                                             ->native(false),
                                     ])
                                     ->columns(1)
-                                    ->columnSpanFull(),   
-                                    
+                                    ->columnSpanFull(),
+
                                 Section::make('Content Organization')
                                     ->description('Assign categories and authors to organize and attribute your post.')
                                     ->schema([

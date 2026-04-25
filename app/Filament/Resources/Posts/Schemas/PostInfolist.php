@@ -6,9 +6,9 @@ use App\Models\Post;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 
 class PostInfolist
 {
@@ -37,7 +37,7 @@ class PostInfolist
                                             ->disk('r2')
                                             ->extraImgAttributes([
                                                 'loading' => 'lazy',
-                                                'class' => 'rounded-md'
+                                                'class' => 'rounded-md',
                                             ])
                                             ->checkFileExistence(false)
                                             ->columnSpanFull()
@@ -61,7 +61,7 @@ class PostInfolist
                                     ->columnSpanFull(),
                             ])
                             ->columnSpan(2),
-                            
+
                         Grid::make()
                             ->schema([
                                 Section::make('Publishing')

@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\Posts\Widgets;
 
+use App\Enums\PostStatus;
 use App\Filament\Resources\Posts\Pages\ListPosts;
 use Filament\Widgets\Concerns\InteractsWithPageTable;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-use App\Enums\PostStatus;
 
 class PostStats extends BaseWidget
 {
@@ -40,7 +40,6 @@ class PostStats extends BaseWidget
         $featuredPosts = (clone $query)
             ->where('is_featured', true)
             ->count();
-
 
         return [
             Stat::make('Total Posts', $totalPosts)

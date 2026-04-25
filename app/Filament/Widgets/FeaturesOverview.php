@@ -11,7 +11,6 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Filament\Widgets\Widget;
-use Illuminate\Database\Eloquent\Model;
 
 class FeaturesOverview extends Widget
 {

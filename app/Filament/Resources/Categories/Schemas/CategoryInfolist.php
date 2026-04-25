@@ -44,9 +44,9 @@ class CategoryInfolist
                                     ->columnSpanFull(),
                             ])
                             ->columnSpan(2),
-                        
+
                         Grid::make()
-                            ->schema([    
+                            ->schema([
                                 Section::make('Timestamps')
                                     ->description('Creation and update history.')
                                     ->schema([
@@ -79,8 +79,8 @@ class CategoryInfolist
                             ])
                             ->columnSpan(1)
                             ->grow(false),
-                ])
-                ->columnSpanFull(),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 }

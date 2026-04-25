@@ -2,18 +2,18 @@
 
 namespace App\Filament\Resources\Posts\Pages;
 
+use App\Enums\PostStatus;
 use App\Filament\Resources\Posts\PostResource;
 use App\Models\Post;
 use Filament\Actions\Action;
 use Filament\Actions\EditAction;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Icons\Heroicon;
-use Filament\Notifications\Notification;
-use App\Enums\PostStatus;
 use Nben\FilamentRecordNav\Actions\NextRecordAction;
 use Nben\FilamentRecordNav\Actions\PreviousRecordAction;
 use Nben\FilamentRecordNav\Enums\NavigationPage;
-use Filament\Infolists\Components\TextEntry;
 
 class ViewNoTraitPost extends ViewRecord
 {
@@ -32,7 +32,7 @@ class ViewNoTraitPost extends ViewRecord
 
             NextRecordAction::make()
                 ->navigateTo(NavigationPage::custom('no-trait-view')),
-                
+
             Action::make('docs')
                 ->button()
                 ->outlined()
@@ -61,7 +61,7 @@ class ViewNoTraitPost extends ViewRecord
                         ->send();
 
                     $this->halt();
-                    
+
                     $record->update([
                         'published_at' => now(),
                         'scheduled_at' => null,
