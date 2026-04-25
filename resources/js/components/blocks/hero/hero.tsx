@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { motion } from 'motion/react';
+import { ArrowUpRight } from 'lucide-react';
 
 export type AvatarList = {
     image: string;
@@ -15,75 +15,90 @@ type HeroSectionProps = {
 function HeroSection({ avatarList }: HeroSectionProps) {
     return (
         <section>
-            <div className="w-full h-full relative">
-                <div className="relative w-full pt-0 md:pt-20 pb-6 md:pb-10 before:absolute before:w-full before:h-full before:bg-linear-to-r before:from-sky-100 before:via-white before:to-amber-100 before:rounded-full before:top-24 before:blur-3xl before:-z-10 dark:before:from-slate-800 dark:before:via-black dark:before:to-stone-700 dark:before:rounded-full dark:before:blur-3xl dark:before:-z-10">
-                    <div className="container mx-auto relative z-10">
-                        <div className="flex flex-col max-w-5xl mx-auto gap-8">
-                            <div className="relative flex flex-col text-center items-center sm:gap-6 gap-4">
+            <div className="relative h-full w-full">
+                <div className="relative w-full pt-0 pb-6 before:absolute before:top-24 before:-z-10 before:h-full before:w-full before:rounded-full before:bg-linear-to-r before:from-sky-100 before:via-white before:to-amber-100 before:blur-3xl md:pt-20 md:pb-10 dark:before:-z-10 dark:before:rounded-full dark:before:from-slate-800 dark:before:via-black dark:before:to-stone-700 dark:before:blur-3xl">
+                    <div className="relative z-10 container mx-auto">
+                        <div className="mx-auto flex max-w-5xl flex-col gap-8">
+                            <div className="relative flex flex-col items-center gap-4 text-center sm:gap-6">
                                 <motion.h1
                                     initial={{ opacity: 0, y: 32 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 1, ease: "easeInOut" }}
-                                    className="lg:text-8xl md:text-7xl text-5xl font-medium leading-14 md:leading-20 lg:leading-24"
+                                    transition={{
+                                        duration: 1,
+                                        ease: 'easeInOut',
+                                    }}
+                                    className="text-5xl leading-14 font-medium md:text-7xl md:leading-20 lg:text-8xl lg:leading-24"
                                 >
-                                    Building bold brands with{" "}
-                                    <span
-                                        className="font-instrument tracking-tight"
-                                    >
+                                    Building bold brands with{' '}
+                                    <span className="font-instrument tracking-tight">
                                         thoughtful design
                                     </span>
                                 </motion.h1>
                                 <motion.p
                                     initial={{ opacity: 0, y: 32 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 1, delay: 0.1, ease: "easeInOut" }}
-                                    className="text-base font-normal max-w-2xl text-muted-foreground"
+                                    transition={{
+                                        duration: 1,
+                                        delay: 0.1,
+                                        ease: 'easeInOut',
+                                    }}
+                                    className="max-w-2xl text-base font-normal text-muted-foreground"
                                 >
-                                    At shadcn space, we help small startups tackle the world's
-                                    biggest challenges with tailored solutions, guiding you from
+                                    At shadcn space, we help small startups
+                                    tackle the world's biggest challenges with
+                                    tailored solutions, guiding you from
                                     strategy to success in a competitive market.
                                 </motion.p>
                             </div>
                             <motion.div
                                 initial={{ opacity: 0, y: 32 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 1, delay: 0.2, ease: "easeInOut" }}
-                                className="flex items-center flex-col md:flex-row justify-center gap-8"
+                                transition={{
+                                    duration: 1,
+                                    delay: 0.2,
+                                    ease: 'easeInOut',
+                                }}
+                                className="flex flex-col items-center justify-center gap-8 md:flex-row"
                             >
-                                <Button className="relative text-sm font-medium rounded-full h-12 p-1 ps-6 pe-14 group transition-all duration-500 hover:ps-14 hover:pe-6 w-fit overflow-hidden cursor-pointer">
+                                <Button className="group relative h-12 w-fit cursor-pointer overflow-hidden rounded-full p-1 ps-6 pe-14 text-sm font-medium transition-all duration-500 hover:ps-14 hover:pe-6">
                                     <span className="relative z-10 transition-all duration-500">
                                         Get Started
                                     </span>
-                                    <span className="absolute right-1 w-10 h-10 bg-background text-foreground rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45">
+                                    <span className="absolute right-1 flex h-10 w-10 items-center justify-center rounded-full bg-background text-foreground transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45">
                                         <ArrowUpRight size={16} />
                                     </span>
                                 </Button>
-                                <div className="flex items-center sm:gap-7 gap-3">
+                                <div className="flex items-center gap-3 sm:gap-7">
                                     <ul className="avatar flex flex-row items-center">
                                         {avatarList.map((avatar, index) => (
-                                            <li key={index} className="-mr-2 z-1 avatar-hover:ml-2">
+                                            <li
+                                                key={index}
+                                                className="avatar-hover:ml-2 z-1 -mr-2"
+                                            >
                                                 <img
-                                                src={avatar.image}
-                                                alt="Avatar"
-                                                width={40}
-                                                height={40}
-                                                className="rounded-full border-2 border-white"
+                                                    src={avatar.image}
+                                                    alt="Avatar"
+                                                    width={40}
+                                                    height={40}
+                                                    className="rounded-full border-2 border-white"
                                                 />
                                             </li>
                                         ))}
                                     </ul>
-                                    <div className="gap-1 flex flex-col items-start">
+                                    <div className="flex flex-col items-start gap-1">
                                         <div className="flex gap-1">
-                                            {Array.from({ length: 5 }).map((_, index) => (
-                                                <img
-                                                key={index}
-                                                src="https://images.shadcnspace.com/assets/svgs/icon-star.svg"
-                                                alt="star"
-                                                className="h-4 w-4"
-                                                />
-                                            ))}
+                                            {Array.from({ length: 5 }).map(
+                                                (_, index) => (
+                                                    <img
+                                                        key={index}
+                                                        src="https://images.shadcnspace.com/assets/svgs/icon-star.svg"
+                                                        alt="star"
+                                                        className="h-4 w-4"
+                                                    />
+                                                ),
+                                            )}
                                         </div>
-                                        <p className="sm:text-sm text-xs font-normal text-muted-foreground">
+                                        <p className="text-xs font-normal text-muted-foreground sm:text-sm">
                                             Trusted by 1000+ clients
                                         </p>
                                     </div>

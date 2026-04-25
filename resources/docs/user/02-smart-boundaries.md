@@ -81,12 +81,12 @@ When `getCachedRecord()` returns `null` (no adjacent record exists), the button 
 
 ## Behaviour at Each Boundary
 
-| Position | PreviousRecordAction | NextRecordAction |
-|---|---|---|
-| First record | Gray, disabled, no href | Primary, enabled, href set |
+| Position      | PreviousRecordAction       | NextRecordAction           |
+| ------------- | -------------------------- | -------------------------- |
+| First record  | Gray, disabled, no href    | Primary, enabled, href set |
 | Middle record | Primary, enabled, href set | Primary, enabled, href set |
-| Last record | Primary, enabled, href set | Gray, disabled, no href |
-| Only record | Gray, disabled, no href | Gray, disabled, no href |
+| Last record   | Primary, enabled, href set | Gray, disabled, no href    |
+| Only record   | Gray, disabled, no href    | Gray, disabled, no href    |
 
 ---
 

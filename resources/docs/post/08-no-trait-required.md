@@ -85,13 +85,13 @@ For any page where the global config ordering is sufficient, leave the trait out
 
 ## Comparison: With and Without the Trait
 
-| Aspect | Without trait | With trait |
-|---|---|---|
-| Works out of the box | Yes | Yes |
-| Uses config for ordering | Yes | Yes (unless overridden) |
-| Custom query filtering | No | Yes, via getPreviousRecord / getNextRecord |
-| Custom URL | No | Yes, via getRecordNavigationUrl |
-| Required for basic navigation | No | No |
+| Aspect                        | Without trait | With trait                                 |
+| ----------------------------- | ------------- | ------------------------------------------ |
+| Works out of the box          | Yes           | Yes                                        |
+| Uses config for ordering      | Yes           | Yes (unless overridden)                    |
+| Custom query filtering        | No            | Yes, via getPreviousRecord / getNextRecord |
+| Custom URL                    | No            | Yes, via getRecordNavigationUrl            |
+| Required for basic navigation | No            | No                                         |
 
 ---
 

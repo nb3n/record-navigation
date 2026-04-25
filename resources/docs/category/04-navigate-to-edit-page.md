@@ -75,10 +75,10 @@ In this example the previous button stays on `view` while the next button opens 
 
 ## Available NavigationPage Values
 
-| Value | Target page | Filament route name |
-|---|---|---|
-| `NavigationPage::View` | ViewRecord page | `view` |
-| `NavigationPage::Edit` | EditRecord page | `edit` |
+| Value                                  | Target page          | Filament route name        |
+| -------------------------------------- | -------------------- | -------------------------- |
+| `NavigationPage::View`                 | ViewRecord page      | `view`                     |
+| `NavigationPage::Edit`                 | EditRecord page      | `edit`                     |
 | `NavigationPage::custom('route-name')` | Any registered route | your key from `getPages()` |
 
 For custom routes beyond `view` and `edit`, see the Custom Routes document.

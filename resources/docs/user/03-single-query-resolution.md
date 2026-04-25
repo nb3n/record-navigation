@@ -82,11 +82,11 @@ On the first closure call the record is resolved and stored. The second and thir
 
 ## Query Count Per Page Render
 
-| Scenario | Queries without caching | Queries with caching |
-|---|---|---|
-| One action on the page | 3 | 1 |
-| Both actions on the page | 6 | 2 |
-| Custom query via trait | 3 per action | 1 per action |
+| Scenario                 | Queries without caching | Queries with caching |
+| ------------------------ | ----------------------- | -------------------- |
+| One action on the page   | 3                       | 1                    |
+| Both actions on the page | 6                       | 2                    |
+| Custom query via trait   | 3 per action            | 1 per action         |
 
 ---
 
