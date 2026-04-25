@@ -1,3 +1,4 @@
+import Footer from '@/components/blocks/footer';
 import AgencyHeroSection from '@/components/blocks/hero';
 import { Head } from '@inertiajs/react';
 
@@ -12,6 +13,7 @@ export default function Welcome() {
                 />
             </Head>
             <AgencyHeroSection />
+            <Footer />
         </>
     );
 }
