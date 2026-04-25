@@ -67,9 +67,9 @@ const Footer = () => {
                                 </a>
 
                                 <p className="text-base font-normal text-muted-foreground">
-                                   A Laravel package that adds elegant next/previous record 
-                                   navigation to your Filament PHP admin panels. Navigate seamlessly 
-                                   between records with intuitive navigation buttons.
+                                   A Laravel package that adds smooth next/previous 
+                                   record navigation to Filament admin panels with 
+                                   intuitive controls.
                                 </p>
                             </div>
                         </div>
