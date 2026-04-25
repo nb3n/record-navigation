@@ -1,8 +1,9 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export type AvatarList = {
     image: string;
@@ -29,9 +30,9 @@ function HeroSection({ avatarList }: HeroSectionProps) {
                                     }}
                                     className="text-5xl leading-14 font-medium md:text-7xl md:leading-20 lg:text-8xl lg:leading-24"
                                 >
-                                    Building bold brands with{' '}
+                                    Seamless record navigation{' '}
                                     <span className="font-instrument tracking-tight">
-                                        thoughtful design
+                                        for Filament
                                     </span>
                                 </motion.h1>
                                 <motion.p
@@ -44,10 +45,8 @@ function HeroSection({ avatarList }: HeroSectionProps) {
                                     }}
                                     className="max-w-2xl text-base font-normal text-muted-foreground"
                                 >
-                                    At shadcn space, we help small startups
-                                    tackle the world's biggest challenges with
-                                    tailored solutions, guiding you from
-                                    strategy to success in a competitive market.
+                                    Drop two actions and navigate between records instantly. 
+                                    No trait required, no setup, just smart, boundary-aware buttons that work out of the box.
                                 </motion.p>
                             </div>
                             <motion.div
@@ -60,14 +59,23 @@ function HeroSection({ avatarList }: HeroSectionProps) {
                                 }}
                                 className="flex flex-col items-center justify-center gap-8 md:flex-row"
                             >
-                                <Button className="group relative h-12 w-fit cursor-pointer overflow-hidden rounded-full p-1 ps-6 pe-14 text-sm font-medium transition-all duration-500 hover:ps-14 hover:pe-6">
+                                <a 
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    href='https://filamentphp.com/plugins/nben-malla-record-navigation'
+                                    className={
+                                        cn(
+                                            buttonVariants({variant: 'default'}),
+                                            'group relative h-12 w-fit cursor-pointer overflow-hidden rounded-full p-1 ps-6 pe-14 text-sm font-medium transition-all duration-500 hover:ps-14 hover:pe-6'
+                                        )
+                                    }>
                                     <span className="relative z-10 transition-all duration-500">
                                         Get Started
                                     </span>
                                     <span className="absolute right-1 flex h-10 w-10 items-center justify-center rounded-full bg-background text-foreground transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45">
                                         <ArrowUpRight size={16} />
                                     </span>
-                                </Button>
+                                </a>
                                 <div className="flex items-center gap-3 sm:gap-7">
                                     <ul className="avatar flex flex-row items-center">
                                         {avatarList.map((avatar, index) => (
@@ -91,7 +99,7 @@ function HeroSection({ avatarList }: HeroSectionProps) {
                                                 (_, index) => (
                                                     <img
                                                         key={index}
-                                                        src="https://images.shadcnspace.com/assets/svgs/icon-star.svg"
+                                                        src="https://cdn.rnd.nben.com.np/media/icons/icon-star.svg"
                                                         alt="star"
                                                         className="h-4 w-4"
                                                     />
