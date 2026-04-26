@@ -45,8 +45,10 @@ function HeroSection({ avatarList }: HeroSectionProps) {
                                     }}
                                     className="max-w-2xl text-base font-normal text-muted-foreground"
                                 >
-                                    Drop two actions and navigate between records instantly. 
-                                    No trait required, no setup, just smart, boundary-aware buttons that work out of the box.
+                                    Drop two actions and navigate between
+                                    records instantly. No trait required, no
+                                    setup, just smart, boundary-aware buttons
+                                    that work out of the box.
                                 </motion.p>
                             </div>
                             <motion.div
@@ -59,16 +61,15 @@ function HeroSection({ avatarList }: HeroSectionProps) {
                                 }}
                                 className="flex flex-col items-center justify-center gap-8 md:flex-row"
                             >
-                                <a 
+                                <a
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    href='https://filamentphp.com/plugins/nben-malla-record-navigation'
-                                    className={
-                                        cn(
-                                            buttonVariants({variant: 'default'}),
-                                            'group relative h-12 w-fit cursor-pointer overflow-hidden rounded-full p-1 ps-6 pe-14 text-sm font-medium transition-all duration-500 hover:ps-14 hover:pe-6'
-                                        )
-                                    }>
+                                    href="https://filamentphp.com/plugins/nben-malla-record-navigation"
+                                    className={cn(
+                                        buttonVariants({ variant: 'default' }),
+                                        'group relative h-12 w-fit cursor-pointer overflow-hidden rounded-full p-1 ps-6 pe-14 text-sm font-medium transition-all duration-500 hover:ps-14 hover:pe-6',
+                                    )}
+                                >
                                     <span className="relative z-10 transition-all duration-500">
                                         Get Started
                                     </span>

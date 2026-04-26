@@ -67,9 +67,9 @@ const Footer = () => {
                                 </a>
 
                                 <p className="text-base font-normal text-muted-foreground">
-                                   A Laravel package that adds smooth next/previous 
-                                   record navigation to Filament admin panels with 
-                                   intuitive controls.
+                                    A Laravel package that adds smooth
+                                    next/previous record navigation to Filament
+                                    admin panels with intuitive controls.
                                 </p>
                             </div>
                         </div>
@@ -101,10 +101,13 @@ const Footer = () => {
                         ))}
                     </div>
                     <Separator orientation="horizontal" />
-                    <div className="animate-in flex items-center justify-between text-sm font-normal text-muted-foreground delay-100 duration-1000 ease-in-out fill-mode-both slide-in-from-bottom-10 fade-in">
-                        <p>© {new Date().getFullYear()} Record Navigation. All Rights Reserved</p>
+                    <div className="flex animate-in items-center justify-between text-sm font-normal text-muted-foreground delay-100 duration-1000 ease-in-out fill-mode-both slide-in-from-bottom-10 fade-in">
+                        <p>
+                            © {new Date().getFullYear()} Record Navigation. All
+                            Rights Reserved
+                        </p>
 
-                        <a 
+                        <a
                             href="https://nben.com.np"
                             target="_blank"
                             rel="noopener noreferrer"

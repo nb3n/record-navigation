@@ -15,7 +15,7 @@ const CollaborateButton = ({ className }: { className?: string }) => (
     <a
         href="https://rnd.nben.com.np/admin"
         className={cn(
-            buttonVariants({variant: 'default'}),
+            buttonVariants({ variant: 'default' }),
             'group relative h-10 w-fit overflow-hidden rounded-full p-1 ps-4 pe-12 text-sm font-medium transition-all duration-500 hover:ps-12 hover:pe-4',
             className,
             'cursor-pointer',
