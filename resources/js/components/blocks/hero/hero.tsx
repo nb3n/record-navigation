@@ -1,8 +1,8 @@
 'use client';
 
-import { buttonVariants } from '@/components/ui/button';
-import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
+import { motion } from 'motion/react';
+import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export type AvatarList = {

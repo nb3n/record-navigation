@@ -1,11 +1,11 @@
 'use client';
 
+import { ArrowUpRight } from 'lucide-react';
+import { motion } from 'motion/react';
 import { useState, useEffect, useCallback } from 'react';
-import { cn } from '@/lib/utils';
 import Logo from '@/assets/logo/logo';
 import { buttonVariants } from '@/components/ui/button';
-import { motion } from 'motion/react';
-import { ArrowUpRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 type HeaderProps = {
     className?: string;
@@ -31,7 +31,9 @@ const CollaborateButton = ({ className }: { className?: string }) => (
 );
 
 const Header = ({ className }: HeaderProps) => {
-    const [sticky, setSticky] = useState(false);
+    const [sticky, setSticky] = useState(() =>
+        typeof window !== 'undefined' ? window.scrollY >= 50 : false
+    );
 
     const handleScroll = useCallback(() => {
         setSticky(window.scrollY >= 50);
@@ -39,7 +41,6 @@ const Header = ({ className }: HeaderProps) => {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
 
         return () => {
             window.removeEventListener('scroll', handleScroll);

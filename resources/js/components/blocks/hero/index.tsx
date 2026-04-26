@@ -1,5 +1,5 @@
-import HeroSection from '@/components/blocks/hero/hero';
 import Header from '@/components/blocks/hero/header';
+import HeroSection from '@/components/blocks/hero/hero';
 import type { AvatarList } from '@/components/blocks/hero/hero';
 
 export default function AgencyHeroSection() {
