@@ -1,4 +1,4 @@
-import Header from '@/components/blocks/hero/header';
+'use client';
 import HeroSection from '@/components/blocks/hero/hero';
 import type { AvatarList } from '@/components/blocks/hero/hero';
 
@@ -19,11 +19,8 @@ export default function AgencyHeroSection() {
     ];
 
     return (
-        <div className="relative">
-            <Header />
-            <main>
-                <HeroSection avatarList={avatarList} />
-            </main>
-        </div>
+        <main>
+            <HeroSection avatarList={avatarList} />
+        </main>
     );
 }

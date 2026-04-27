@@ -31,9 +31,7 @@ const CollaborateButton = ({ className }: { className?: string }) => (
 );
 
 const Header = ({ className }: HeaderProps) => {
-    const [sticky, setSticky] = useState(() =>
-        typeof window !== 'undefined' ? window.scrollY >= 50 : false,
-    );
+    const [sticky, setSticky] = useState(false);
 
     const handleScroll = useCallback(() => {
         setSticky(window.scrollY >= 50);
@@ -42,9 +40,7 @@ const Header = ({ className }: HeaderProps) => {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+        return () => window.removeEventListener('scroll', handleScroll);
     }, [handleScroll]);
 
     return (

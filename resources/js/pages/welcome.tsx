@@ -5,6 +5,7 @@ import Faq from '@/components/blocks/faq';
 import Feature from '@/components/blocks/feature';
 import Footer from '@/components/blocks/footer';
 import AgencyHeroSection from '@/components/blocks/hero';
+import Header from '@/components/blocks/hero/header';
 
 export default function Welcome() {
     return (
@@ -16,12 +17,16 @@ export default function Welcome() {
                     rel="stylesheet"
                 />
             </Head>
-            <AgencyHeroSection />
-            <Feature />
-            <AboutUs />
-            <Faq />
-            <CTA />
-            <Footer />
+
+            <div className="relative">
+                <Header />
+                <AgencyHeroSection />
+                <Feature />
+                <AboutUs />
+                <Faq />
+                <CTA />
+                <Footer />
+            </div>
         </>
     );
 }
