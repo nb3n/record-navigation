@@ -35,19 +35,20 @@ const CTA = ({ className }: CTAProps) => {
                                     Ready to navigate smarter?
                                 </h2>
                                 <p className="mx-auto max-w-2xl">
-                                    Install in minutes and give your users effortless record navigation, no configuration required.
+                                    Install in minutes and give your users
+                                    effortless record navigation, no
+                                    configuration required.
                                 </p>
                             </div>
-                            <a 
+                            <a
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 href="https://filamentphp.com/plugins/nben-malla-record-navigation"
-                                className={
-                                cn(
-                                    buttonVariants({variant: 'default'}),
-                                    'group relative h-12 w-fit cursor-pointer overflow-hidden rounded-full p-1 ps-6 pe-14 text-sm font-medium transition-all duration-500 hover:bg-primary/80 hover:ps-14 hover:pe-6'
-                                )
-                            }>
+                                className={cn(
+                                    buttonVariants({ variant: 'default' }),
+                                    'group relative h-12 w-fit cursor-pointer overflow-hidden rounded-full p-1 ps-6 pe-14 text-sm font-medium transition-all duration-500 hover:bg-primary/80 hover:ps-14 hover:pe-6',
+                                )}
+                            >
                                 <span className="relative z-10 transition-all duration-500">
                                     Get Started Free
                                 </span>
