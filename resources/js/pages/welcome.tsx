@@ -1,6 +1,7 @@
 import { Head } from '@inertiajs/react';
 import Footer from '@/components/blocks/footer';
 import AgencyHeroSection from '@/components/blocks/hero';
+import CTA from '@/components/blocks/cta';
 
 export default function Welcome() {
     return (
@@ -13,6 +14,7 @@ export default function Welcome() {
                 />
             </Head>
             <AgencyHeroSection />
+            <CTA />
             <Footer />
         </>
     );
