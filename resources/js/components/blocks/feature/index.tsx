@@ -20,7 +20,9 @@ const featureData: Feature[] = [
         title: 'Zero configuration, instant navigation.',
         content: (
             <>
-                Drop two actions into <Kbd>getHeaderActions()</Kbd> and you are done. No trait required, no setup and the actions work out of the box with a sensible config-driven default.
+                Drop two actions into <Kbd>getHeaderActions()</Kbd> and you are
+                done. No trait required, no setup and the actions work out of
+                the box with a sensible config-driven default.
             </>
         ),
     },
@@ -29,7 +31,10 @@ const featureData: Feature[] = [
         title: 'Navigate to any page type.',
         content: (
             <>
-                Target the view page, edit page, or any custom route registered in your resource. Pass <Kbd>NavigationPage::Edit</Kbd> or <Kbd>NavigationPage::custom()</Kbd> to <Kbd>navigateTo()</Kbd> on either action independently.
+                Target the view page, edit page, or any custom route registered
+                in your resource. Pass <Kbd>NavigationPage::Edit</Kbd> or{' '}
+                <Kbd>NavigationPage::custom()</Kbd> to <Kbd>navigateTo()</Kbd>{' '}
+                on either action independently.
             </>
         ),
     },
@@ -38,7 +43,10 @@ const featureData: Feature[] = [
         title: 'Fully overridable query logic.',
         content: (
             <>
-                Add the optional <Kbd>WithRecordNavigation</Kbd> trait and override <Kbd>getPreviousRecord()</Kbd> or <Kbd>getNextRecord()</Kbd> to filter by status, scope to a tenant, or order by a custom column.
+                Add the optional <Kbd>WithRecordNavigation</Kbd> trait and
+                override <Kbd>getPreviousRecord()</Kbd> or{' '}
+                <Kbd>getNextRecord()</Kbd> to filter by status, scope to a
+                tenant, or order by a custom column.
             </>
         ),
     },
@@ -139,19 +147,19 @@ const Feature = () => {
                             <div className="flex items-center gap-2 text-muted-foreground">
                                 <Asterisk size={16} />
                                 <p className="text-sm font-normal">
-                                    Have questions? Join the discussion on Discord
+                                    Have questions? Join the discussion on
+                                    Discord
                                 </p>
                             </div>
-                            <a 
+                            <a
                                 className={cn(
-                                    buttonVariants({variant: 'default'}),
-                                    'h-full cursor-pointer rounded-full px-5 py-2.5 shadow-xs'
+                                    buttonVariants({ variant: 'default' }),
+                                    'h-full cursor-pointer rounded-full px-5 py-2.5 shadow-xs',
                                 )}
-                                href="https://discord.com/channels/883083792112300104/1385332641779417118" 
-                                target="_blank" 
+                                href="https://discord.com/channels/883083792112300104/1385332641779417118"
+                                target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                
                                 Join on Discord
                             </a>
                         </motion.div>
