@@ -56,7 +56,7 @@ const Feature = () => {
     return (
         <section>
             <div className="py-8 sm:py-16 lg:py-20">
-                <div className="mx-auto max-w-7xl px-4 sm:px-8">
+                <div className="mx-auto max-w-6xl px-4 sm:px-8">
                     <div className="flex flex-col gap-8 md:gap-16">
                         <motion.div
                             initial={{ y: -10, opacity: 0 }}
