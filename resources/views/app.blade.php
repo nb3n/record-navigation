@@ -49,7 +49,14 @@ $graph->softwareApplication()
             ->bestRating('5')
             ->worstRating('1')
             ->ratingCount('1')
-    );
+    )
+    ->sameAs([
+        'https://www.wikidata.org/wiki/Q139569681',
+        'https://packagist.org/packages/nben/filament-record-nav',
+        'https://github.com/nb3n/filament-record-nav',
+        'https://filamentphp.com/plugins/nben-malla-record-navigation',
+    ]);
+
 $graph->softwareSourceCode()
     ->setProperty('@id', 'https://rnd.nben.com.np/#sourcecode')
     ->name('Filament Record Navigation')
@@ -77,8 +84,7 @@ $graph->person()
         'https://www.instagram.com/nb3n.m',
         'https://www.wikidata.org/wiki/Q131932191',
         'https://orcid.org/0009-0006-8795-8757',
-        'https://packagist.org/packages/nben/filament-record-nav',
-        'https://filamentphp.com/plugins/nben-malla-record-navigation',
+        'https://packagist.org/packages/nben',
     ]);
 
 $graph->fAQPage()
