@@ -19,11 +19,7 @@ const CTA = ({ className }: CTAProps) => {
     };
 
     return (
-        <section 
-            className={cn(
-                className,
-            )}
-        >
+        <section className={cn(className)}>
             <div className="py-8 sm:py-20">
                 <div className="mx-auto max-w-7xl px-4 sm:px-16">
                     <div
