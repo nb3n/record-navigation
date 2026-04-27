@@ -1,2 +1,5 @@
 User-agent: *
+Allow: /
 Disallow:
+
+Sitemap: https://rnd.nben.com.np/sitemap.xml
