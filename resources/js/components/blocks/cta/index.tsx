@@ -1,8 +1,8 @@
 'use client';
-import { useRef } from 'react';
-import { motion } from 'motion/react';
-import { Button, buttonVariants } from '@/components/ui/button';
 import { ArrowUpRight } from 'lucide-react';
+import { motion } from 'motion/react';
+import { useRef } from 'react';
+import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 type CTAProps = {
@@ -19,7 +19,11 @@ const CTA = ({ className }: CTAProps) => {
     };
 
     return (
-        <section>
+        <section 
+            className={cn(
+                className,
+            )}
+        >
             <div className="py-8 sm:py-20">
                 <div className="mx-auto max-w-7xl px-4 sm:px-16">
                     <div

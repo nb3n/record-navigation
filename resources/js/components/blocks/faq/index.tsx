@@ -1,3 +1,4 @@
+import { PlusIcon } from 'lucide-react';
 import {
     Accordion,
     AccordionContent,
@@ -6,7 +7,6 @@ import {
 } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Kbd } from '@/components/ui/kbd';
-import { PlusIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type FaqItem = {

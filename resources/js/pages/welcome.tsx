@@ -1,8 +1,8 @@
 import { Head } from '@inertiajs/react';
-import Footer from '@/components/blocks/footer';
-import AgencyHeroSection from '@/components/blocks/hero';
 import CTA from '@/components/blocks/cta';
 import Faq from '@/components/blocks/faq';
+import Footer from '@/components/blocks/footer';
+import AgencyHeroSection from '@/components/blocks/hero';
 
 export default function Welcome() {
     return (
