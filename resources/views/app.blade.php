@@ -154,6 +154,7 @@ $graph->fAQPage()
         <meta property="og:image:alt" content="Filament Record Navigation package preview">
         <meta property="og:locale" content="en_US">
         <meta property="og:site_name" content="Filament Record Navigation">
+        <meta property="og:image:type" content="image/webp">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta property="twitter:domain" content="rnd.nben.com.np">
@@ -170,7 +171,10 @@ $graph->fAQPage()
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
         <link rel="sitemap" type="application/xml" href="https://rnd.nben.com.np/sitemap.xml">
-        
+
+        <link rel="dns-prefetch" href="https://cdn.rnd.nben.com.np">
+        <link rel="dns-prefetch" href="https://fonts.bunny.net">
+
         @viteReactRefresh
         @vite(['resources/css/app.css', 'resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
         <x-inertia::head>
