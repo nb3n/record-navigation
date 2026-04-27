@@ -78,7 +78,7 @@ const FAQ_DATA: FaqItem[] = [
 export default function Faq() {
     return (
         <section>
-            <div className="mx-auto flex max-w-7xl flex-col gap-16 px-4 py-8 sm:px-6 lg:px-8 xl:py-24">
+            <div className="mx-auto flex max-w-6xl flex-col gap-16 px-4 py-8 sm:px-6 lg:px-8 xl:py-24">
                 <div className="flex animate-in flex-col items-center gap-4 delay-100 duration-1000 ease-in-out fill-mode-both slide-in-from-top-10 fade-in">
                     <Badge
                         variant="outline"
