@@ -17,6 +17,7 @@
         "league/flysystem-aws-s3-v3": "^3.0",
         "nben/filament-record-nav": "^2.0",
         "saade/filament-facehash": "^1.0",
+        "spatie/laravel-sitemap": "^8.0",
         "spatie/schema-org": "^4.0"
     },
     "require-dev": {
