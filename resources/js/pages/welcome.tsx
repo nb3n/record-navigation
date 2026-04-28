@@ -18,7 +18,7 @@ export default function Welcome() {
                 />
             </Head>
 
-            <div className="relative">
+            <div className="relative px-2 sm:px-0">
                 <Header />
                 <AgencyHeroSection />
                 <Feature />
