@@ -11,10 +11,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Saade\FilamentFacehash\Concerns\HasFacehashAvatar;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
 #[Fillable(['name', 'email', 'password', 'role'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasFacehashAvatar;
 
@@ -43,5 +45,14 @@ class User extends Authenticatable
         return $this->belongsToMany(Post::class)
             ->withPivot(['role', 'is_primary'])
             ->withTimestamps();
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        $allowedEmails = [
+            'demo@rnd.com',
+        ];
+
+        return in_array($this->email, $allowedEmails);
     }
 }
